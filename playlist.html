@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <title>Playlist 🎵</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body class="fade-in">
+    <video autoplay muted loop playsinline id="video-fondo">
+        <source src="🎨 Try this viral digital planning roundup you’ll want to recreate this weekend using simple ideas you can actually pull off and make your next save - Pin-1031605858407819325.mp4" type="video/mp4">
+    </video>
+    <audio id="musica-fondo" autoplay loop>
+        <source src="ssstik.io_1779566099892.mp3" type="audio/mpeg">
+    </audio>
+    
+    <nav>
+        <a href="cartas.html">💌 Cartas</a>
+        <a href="historia.html">📸 Historia</a>
+        <a href="panda.html">🐼 Panda</a>
+        <a href="juegos.html">🎮 Juegos</a>
+        <a href="contrato.html">📜 Contrato</a>
+        <a href="secreto.html">🔒 Secreto</a>
+        <a href="ticket.html">🎟️ Sorpresa</a>
+        <a href="musica.html">🎵 Música</a>
+    </nav>
+
+    <div class="cristal-box">
+        <h1>Nuestras Canciones 🎵</h1>
+        <p style="margin-bottom: 25px;">Música que suena a ti y a nosotros.</p>
+        
+        <!-- Cambia el link de abajo por tu propia playlist de Spotify -->
+        <iframe style="border-radius:12px; box-shadow: 0 10px 20px rgba(0,0,0,0.5);" src="https://open.spotify.com/embed/playlist/37i9dQZF1DXcBWIGoYBM5M?utm_source=generator&theme=0" width="100%" height="352" frameBorder="0" allowfullscreen="" allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture" loading="lazy"></iframe>
+        
+        <p style="margin-top: 25px; font-style: italic;">Dale play y deja que suene de fondo mientras sigues explorando.</p>
+    </div>
+
+    <div id="asistente-peach">
+        <div id="peach-chat" class="oculto">
+            <div class="chat-header">
+                <span>👑 Princesa Peach</span>
+                <span id="peach-cerrar">✖</span>
+            </div>
+            
+            <div id="chat-historial">
+                <div class="mensaje peach">
+                    ¡Hola, Dani! 👑 Soy Peach. David me programó para cuidarte y guiarte en esta aventura.<br><br>
+                    <strong>¿No sabes qué decirme? Intenta escribirme esto:</strong><br>
+                    🔍 <em>"Dame una pista"</em><br>
+                    💌 <em>"Dame un recadito"</em><br>
+                    🤭 <em>"Cuéntame un secreto"</em><br>
+                    ⏱️ <em>"¿Cuánto tiempo llevamos?"</em>
+                </div>
+            </div>
+            
+            <div class="chat-input-area">
+                <input type="text" id="chat-input" placeholder="Escribe un mensaje..." autocomplete="off">
+                <button id="btn-enviar">➤</button>
+            </div>
+        </div>
+        
+        <div id="peach-avatar">
+            <img src="Peach___-removebg-preview.png" alt="Peach">
+        </div>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>

@@ -1,0 +1,174 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <title>Juegos y Dinámicas 🎮</title>
+    <link rel="stylesheet" href="style.css">
+    <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.6.0/dist/confetti.browser.min.js"></script>
+    
+</head>
+<body class="fade-in">
+    <video autoplay muted loop playsinline id="video-fondo">
+        <source src="🎨 Try this viral digital planning roundup you’ll want to recreate this weekend using simple ideas you can actually pull off and make your next save - Pin-1031605858407819325.mp4" type="video/mp4">
+    </video>
+    <audio id="musica-fondo" autoplay loop>
+        <source src="ssstik.io_1779566099892.mp3" type="audio/mpeg">
+    </audio>
+    
+    <nav>
+        <a href="cartas.html">💌 Cartas</a>
+        <a href="historia.html">📸 Historia</a>
+        <a href="panda.html">🐼 Panda</a>
+        <a href="juegos.html">🎮 Juegos</a>
+        <a href="contrato.html">📜 Contrato</a>
+        <a href="secreto.html">🔒 Secreto</a>
+        <a href="ticket.html">🎟️ Sorpresa</a>
+        <a href="musica.html">🎵 Música</a>
+    </nav>
+
+    <!-- Juego 1: Adivina Quién -->
+    <div class="cristal-box" style="margin-bottom: 20px;">
+        <h1>❤️ Adivina Quién</h1>
+        <p>¿Que pelicula fuimos a ver ese magnifico dia?</p>
+        <input type="text" id="respuesta-cancion" placeholder="Escribe tu respuesta aquí...">
+        <button onclick="verificarAdivinanza()">Responder</button>
+        <h3 id="resultado-adivinanza" class="oculto" style="margin-top: 15px; color: #2ecc71;">¡Correcto! Tienes una memoria increíble 💖</h3>
+    </div>
+
+    <!-- Juego 2: Atrapa los corazones -->
+    <div class="cristal-box" style="margin-bottom: 20px;">
+        <h1>🎯 Atrapa los corazones</h1>
+        <p>Demuestra tus reflejos. Atrapa 10 corazones para ganar.</p>
+        <button onclick="iniciarAtrapaCorazones()" id="btn-iniciar-corazones">Empezar Juego</button>
+        <p style="margin-top: 10px;">Puntuación: <span id="puntos-corazones" style="font-weight: bold; font-size: 1.2rem;">0</span>/10</p>
+        <div id="area-corazones"></div>
+    </div>
+
+    <!-- Juego 3: Máquina de Mensajes -->
+    <div class="cristal-box" style="margin-bottom: 20px;">
+        <h1>🎰 Máquina de Mensajes</h1>
+        <p>Toca el botón y descubre lo que pienso de ti hoy.</p>
+        <h2 id="pantalla-mensaje" style="font-style: italic; margin: 20px 0;">¿Lista?</h2>
+        <button onclick="generarMensaje()">Dame un mensaje ❤️</button>
+    </div>
+
+    <!-- DINÁMICA SANRIO MEJORADA (Juego de hacer clic) -->
+    <div class="cristal-box" style="margin-bottom: 20px;">
+        <h1>🐶 Ayuda a Pochacco 🎀</h1>
+        <p>Pochacco quiere darle un abrazo a Melody, pero necesita tu ayuda. ¡Presiona el botón rápido para hacerlo correr!</p>
+
+        <!-- Escenario de la carrera -->
+        <div id="escenario-carrera" style="position: relative; height: 180px; background: rgba(255, 255, 255, 0.1); border-radius: 15px; margin: 20px 0; border: 2px solid var(--rosa-suave); overflow: hidden; box-shadow: inset 0 0 10px rgba(0,0,0,0.3);">
+            
+            <!-- 1. Imagen de Pochacco (Reemplaza el src con tu imagen) -->
+            <img id="pochacco-real" src="Pochaco_nerd_-_Sanrio_Sticker-removebg-preview.png" alt="Pochacco" style="position: absolute; left: 2%; bottom: 10px; width: 80px; transition: left 0.1s ease-out; z-index: 2;">
+            
+            <!-- 2. Imagen de Melody (Reemplaza el src con tu imagen) -->
+            <img id="melody-real" src="My_Melody_Hello_Kitty_Character_Sanrio_ã_µãƒ_ãƒªã_ªã__ãƒ_ãƒ_ã__ã__ãƒ__PNG-removebg-preview.png" alt="Melody" style="position: absolute; right: 2%; bottom: 10px; width: 80px; z-index: 1;">
+            
+            <!-- 3. Imagen de ellos abrazados (Oculta al inicio) -->
+            <img id="abrazo-sanrio" src="Hello_Kitty_My_Melody_Sanrio_Cinnamoroll_Character_PNG-removebg-preview.png" alt="Abrazados" class="oculto" style="position: absolute; left: 50%; top: 50%; transform: translate(-50%, -50%); width: 130px; z-index: 10;">
+        </div>
+
+        <button id="btn-correr" onclick="correrPochacco()" style="padding: 15px 30px; font-size: 1.2rem; cursor: pointer;">🏃‍♂️ ¡Corre Pochacco!</button>
+        
+        <div id="mensaje-sanrio-victoria" class="oculto" style="margin-top: 20px;">
+            <h2 style="color: var(--rosa-suave);">¡Hacemos el mejor equipo!</h2>
+            <p style="font-size: 1.1rem; font-style: italic;">"Siempre correré hacia ti para verte sonreír."</p>
+        </div>
+    </div>
+
+    <div class="cristal-box" style="margin-bottom: 20px;">
+        <h1>👑 Cenicienta y la Zapatilla Mágica ✨👠✨</h1>
+        <p style="margin-bottom: 20px;">Bibbidi-Bobbidi-Boo! El Hada Madrina necesita ayuda. <br> ¿Puedes encontrar la verdadera zapatilla de cristal entre estas siluetas?</p>
+        
+        <div id="desafio-zapatilla" style="position: relative; background: rgba(255, 255, 255, 0.1); border-radius: 15px; padding: 20px; border: 2px dashed #fff; margin-top: 20px;">
+            <img src="descarga__1_-removebg-preview.png" alt="Hada Madrina" style="position: absolute; top: -40px; right: -20px; width: 100px; filter: drop-shadow(0 5px 5px rgba(0,0,0,0.5));">
+            
+            <p style="font-size: 1rem; color: #eee; margin-bottom: 15px;">Elige la zapatilla más brillante...</p>
+            
+            <div style="display: flex; justify-content: center; gap: 20px; flex-wrap: wrap;">
+                <div class="silueta-zapatilla" onclick="verificarZapatilla('silueta1')" style="opacity: 0.5;">👠</div>
+                
+                <div class="silueta-zapatilla" onclick="verificarZapatilla('silueta2')" style="opacity: 0.3;">👢</div>
+
+                <div class="silueta-zapatilla" onclick="verificarZapatilla('silueta3')" style="opacity: 0.4;">🥿</div>
+
+                <img id="zapatilla-cristal-real" src="Cinderella_Slipper_Shoe_PNG-removebg-preview.png" alt="Zapatilla de Cristal" onclick="verificarZapatilla('correcta')" class="silueta-zapatilla" style="width: 70px; cursor: pointer; filter: drop-shadow(0 0 10px #fff); transition: 0.3s;">
+            </div>
+        </div>
+
+        <div id="mensaje-cenicienta-victoria" class="oculto" style="margin-top: 20px; background: rgba(255, 255, 255, 0.15); padding: 20px; border-radius: 10px;">
+            <h2 style="color: var(--rosa-suave);">¡Sabía que eras tú! 💖 Cenicienta</h2>
+            <p style="font-size: 1.1rem; line-height: 1.6; font-style: italic;">
+                "No hay nadie en el mundo que encaje perfecto en mi vida como tú."
+            </p>
+        </div>
+    </div>
+
+    <div class="escenario-waluigi" id="zona-waluigi">
+    
+        <h2 class="titulo-juego" id="texto-instruccion-waluigi">¡Waluigi robó la sorpresa de Dani!</h2>
+    
+        <div class="confetti-container" id="confetti"></div>
+    
+        <div class="thwomp" id="thwomp">
+            <div class="thwomp-cara">
+                <img src="descarga__3_-removebg-preview.png" alt="Cara enojada de Thwomp" id="thwomp-img">
+            </div>
+        </div>
+    
+        <div class="waluigi-container" id="waluigi">
+            <div class="waluigi-dialogo">¡WAAAA! ¡No te la daré!</div>
+            <div class="waluigi-sprite">
+                <img src="Super_Mario_illustration__Mario_Party_Star_Rush_Super_Mario_Bros__Princess_Peach_Luigi__mario_bros__super_Mario_Bros__nintendo_png-removebg-preview.png" alt="Waluigi">
+            </div>
+        </div>
+    
+        <button class="boton-peligro" id="btn-destruir">NO TOCAR</button>
+    
+        <div class="contenedor-premio-interactivo" id="premio-interactivo">
+            <h3 class="texto-victoria">¡LO LOGRASTE, DANI! ⭐</h3>
+            <p class="subtexto-victoria">Toca el cofre para abrir tu regalo...</p>
+            
+            <div class="cofre-estrella" id="cofre-clic">
+                <div class="tapa"></div>
+                <div class="caja">⭐</div>
+            </div>
+    
+            <a href="carta_final.html" class="boton-final-regalo" id="btn-regalo-final">Abrir tu Carta Final 💌</a>
+        </div>
+    </div>
+
+    <div id="asistente-peach">
+        <div id="peach-chat" class="oculto">
+            <div class="chat-header">
+                <span>👑 Princesa Peach</span>
+                <span id="peach-cerrar">✖</span>
+            </div>
+            
+            <div id="chat-historial">
+                <div class="mensaje peach">
+                    ¡Hola, Dani! 👑 Soy Peach. David me programó para cuidarte y guiarte en esta aventura.<br><br>
+                    <strong>¿No sabes qué decirme? Intenta escribirme esto:</strong><br>
+                    🔍 <em>"Dame una pista"</em><br>
+                    💌 <em>"Dame un recadito"</em><br>
+                    🤭 <em>"Cuéntame un secreto"</em><br>
+                    ⏱️ <em>"¿Cuánto tiempo llevamos?"</em>
+                </div>
+            </div>
+            
+            <div class="chat-input-area">
+                <input type="text" id="chat-input" placeholder="Escribe un mensaje..." autocomplete="off">
+                <button id="btn-enviar">➤</button>
+            </div>
+        </div>
+        
+        <div id="peach-avatar">
+            <img src="Peach___-removebg-preview.png" alt="Peach">
+        </div>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>

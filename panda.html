@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <title>El Mensajero 🐼</title>
+    <link rel="stylesheet" href="style.css">
+    <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.6.0/dist/confetti.browser.min.js"></script>
+</head>
+<body class="fade-in">
+    
+    <video autoplay muted loop playsinline id="video-fondo">
+        <source src="🎨 Try this viral digital planning roundup you’ll want to recreate this weekend using simple ideas you can actually pull off and make your next save - Pin-1031605858407819325.mp4" type="video/mp4">
+    </video>
+    <audio id="musica-fondo" autoplay loop>
+        <source src="ssstik.io_1779566099892.mp3" type="audio/mpeg">
+    </audio>
+    
+    <nav>
+        <a href="cartas.html">💌 Cartas</a>
+        <a href="historia.html">📸 Historia</a>
+        <a href="panda.html">🐼 Panda</a>
+        <a href="juegos.html">🎮 Juegos</a>
+        <a href="contrato.html">📜 Contrato</a>
+        <a href="secreto.html">🔒 Secreto</a>
+        <a href="ticket.html">🎟️ Sorpresa</a>
+        <a href="musica.html">🎵 Música</a>
+    </nav>
+
+    <div style="display: flex; flex-direction: column; justify-content: center; align-items: center; min-height: 100vh; padding: 100px 20px 40px 20px;">
+        
+        <div class="cristal-box" style="width: 95%; max-width: 700px; padding: 40px; text-align: center;">
+            
+            <h2>🐼 El Mensajero Oficial</h2>
+            <p style="color: #eee; margin-bottom: 40px;">El panda rojo está tomando una siesta. Tócalo para despertarlo y ver qué recadito tiene para ti hoy.</p>
+            
+            <div class="panda-interactivo">
+                
+                <div id="globo-texto" class="oculto">
+                    <p id="mensaje-panda">...</p>
+                </div>
+
+                <img id="imagen-panda" src="snooze-sleepy.gif" alt="Panda Rojo Durmiendo" onclick="despertarPanda()" style="cursor: pointer; width: 250px; transition: transform 0.3s;">
+                
+            </div>
+            
+        </div>
+    </div>
+
+    <div id="asistente-peach">
+        <div id="peach-chat" class="oculto">
+            <div class="chat-header">
+                <span>👑 Princesa Peach</span>
+                <span id="peach-cerrar">✖</span>
+            </div>
+            
+            <div id="chat-historial">
+                <div class="mensaje peach">
+                    ¡Hola, Dani! 👑 Soy Peach. ¿Ya despertaste al panda? Dicen que tiene recaditos muy bonitos hoy.
+                </div>
+            </div>
+            
+            <div class="chat-input-area">
+                <input type="text" id="chat-input" placeholder="Escribe un mensaje..." autocomplete="off">
+                <button id="btn-enviar">➤</button>
+            </div>
+        </div>
+        
+        <div id="peach-avatar">
+            <img src="Peach___-removebg-preview.png" alt="Peach">
+        </div>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>

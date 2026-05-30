@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Nuestro Contrato 📜</title>
+    <link rel="stylesheet" href="style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Caveat:wght@600&display=swap" rel="stylesheet">
+</head>
+<body class="fade-in">
+    <video autoplay muted loop playsinline id="video-fondo">
+        <source src="🎨 Try this viral digital planning roundup you’ll want to recreate this weekend using simple ideas you can actually pull off and make your next save - Pin-1031605858407819325.mp4" type="video/mp4">
+    </video>
+    <audio id="musica-fondo" autoplay loop>
+        <source src="ssstik.io_1779566099892.mp3" type="audio/mpeg">
+    </audio>
+
+    <nav>
+        <a href="cartas.html">💌 Cartas</a>
+        <a href="historia.html">📸 Historia</a>
+        <a href="panda.html">🐼 Panda</a>
+        <a href="juegos.html">🎮 Juegos</a>
+        <a href="contrato.html">📜 Contrato</a>
+        <a href="secreto.html">🔒 Secreto</a>
+        <a href="ticket.html">🎟️ Sorpresa</a>
+        <a href="musica.html">🎵 Música</a>
+    </nav>
+
+    <div class="contenedor-contrato">
+        <div class="notebook-paper">
+            <h1 class="titulo-contrato">Contrato de Relación</h1>
+            <p class="subtitulo-contrato">Yo, al firmar este documento, acepto los siguientes términos por toda la eternidad:</p>
+            
+            <div class="clausulas">
+                <label class="clausula-item">
+                    <input type="checkbox" class="check-regla"> 
+                    <span class="custom-check"></span>
+                    Cláusula 1: Día de maratón de películas con mucha comida: pizza, hamburguesas, elotes, jugos, papas de todo... ¡el día que sea!
+                </label>
+                
+                <label class="clausula-item">
+                    <input type="checkbox" class="check-regla"> 
+                    <span class="custom-check"></span>
+                    Cláusula 2: Conocer a mi gatita, que ella te quiere conocer y que le des un Whiskas.
+                </label>
+                
+                <label class="clausula-item">
+                    <input type="checkbox" class="check-regla"> 
+                    <span class="custom-check"></span>
+                    Cláusula 3: Cuando veamos una película por Discord siempre hablar, ya sea por mensaje o llamada; no se puede ver si no interactuamos.
+                </label>
+            </div>
+
+            <div class="zona-firma">
+                <p>Firma de aceptación (Dibuja con tu dedo o mouse):</p>
+                <div class="canvas-container">
+                    <canvas id="canvas-firma"></canvas>
+                </div>
+                <div class="firmas-nombres">
+                    <span>Firma de ella</span>
+                    <span>David Alejandro</span>
+                </div>
+            </div>
+
+            <button id="btn-aceptar-contrato" disabled>Sellar Contrato ❤️</button>
+        </div>
+    </div>
+
+    <div id="asistente-peach">
+        <div id="peach-chat" class="oculto">
+            <div class="chat-header">
+                <span>👑 Princesa Peach</span>
+                <span id="peach-cerrar">✖</span>
+            </div>
+            
+            <div id="chat-historial">
+                <div class="mensaje peach">
+                    ¡Hola, Dani! 👑 Soy Peach. David me programó para cuidarte y guiarte en esta aventura.<br><br>
+                    <strong>¿No sabes qué decirme? Intenta escribirme esto:</strong><br>
+                    🔍 <em>"Dame una pista"</em><br>
+                    💌 <em>"Dame un recadito"</em><br>
+                    🤭 <em>"Cuéntame un secreto"</em><br>
+                    ⏱️ <em>"¿Cuánto tiempo llevamos?"</em>
+                </div>
+            </div>
+            
+            <div class="chat-input-area">
+                <input type="text" id="chat-input" placeholder="Escribe un mensaje..." autocomplete="off">
+                <button id="btn-enviar">➤</button>
+            </div>
+        </div>
+        
+        <div id="peach-avatar">
+            <img src="Peach___-removebg-preview.png" alt="Peach">
+        </div>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>

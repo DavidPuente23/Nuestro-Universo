@@ -1,0 +1,211 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <title>Nuestra Sala de Escucha 🎵</title>
+    <link rel="stylesheet" href="style.css">
+    <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.6.0/dist/confetti.browser.min.js"></script>
+</head>
+<body class="fade-in" id="cuerpo-musica">
+    
+    <video autoplay muted loop playsinline id="video-fondo">
+        <source src="🎨 Try this viral digital planning roundup you’ll want to recreate this weekend using simple ideas you can actually pull off and make your next save - Pin-1031605858407819325.mp4" type="video/mp4">
+    </video>
+    <audio id="musica-fondo" autoplay loop>
+        <source src="ssstik.io_1779566099892.mp3" type="audio/mpeg">
+    </audio>
+    
+    <nav>
+        <a href="cartas.html">💌 Cartas</a>
+        <a href="historia.html">📸 Historia</a>
+        <a href="panda.html">🐼 Panda</a>
+        <a href="juegos.html">🎮 Juegos</a>
+        <a href="contrato.html">📜 Contrato</a>
+        <a href="secreto.html">🔒 Secreto</a>
+        <a href="ticket.html">🎟️ Sorpresa</a>
+        <a href="musica.html">🎵 Música</a>
+    </nav>
+
+    <div style="display: flex; flex-direction: column; justify-content: center; align-items: center; min-height: 100vh; padding: 100px 20px 40px 20px; z-index: 2; position: relative;">
+        <div class="cristal-box" style="width: 95%; max-width: 800px; padding: 40px; text-align: center;">
+            
+            <h2>🎵 Sala de Escucha</h2>
+            <p style="color: #eee; margin-bottom: 30px;">Toca un disco para ponerlo en el plato. Luego, toca la aguja para reproducir nuestra música.</p>
+
+            <div class="escritorio-musical">
+                
+                <div class="coleccion-discos" id="contenedor-discos">
+                    <div class="disco-item" data-img="ENHYPEN - Dimension_ Answer.jfif" data-audio="ENHYPEN - Polaroid Love (Oficial Audio)  Sub. Español.mp3" data-color="#ff8fab">
+                        <img src="ENHYPEN - Dimension_ Answer.jfif" alt="Polaroid Love">
+                    </div>
+                    <div class="disco-item" data-img="Eres  Mi Persona Favorita - Rio Roma.jfif" data-audio="Río Roma - Mi Persona Favorita (Lyric Video).mp3" data-color="#4a6fa5">
+                        <img src="Eres  Mi Persona Favorita - Rio Roma.jfif" alt="Mi Persona Favorita">
+                    </div>
+                    <div class="disco-item" data-img="descarga (4).jfif" data-audio="Valentín Elizalde x Edgardo Núñez - El Venadito [AUDIO].mp3" data-color="#4a6fa5">
+                        <img src="descarga (4).jfif" alt="Mi Persona Favorita">
+                    </div>
+                    <div class="disco-item" data-img="0% - SANTOS BRAVOS.jfif" data-audio="SANTOS BRAVOS MHM LyricsLetra.mp3" data-color="#4a6fa5">
+                        <img src="0% - SANTOS BRAVOS.jfif" alt="Mi Persona Favorita">
+                    </div>
+                </div>
+                
+                
+                <div class="equipo-sonido">
+                    <div class="tocadiscos-base" style="perspective: 1200px;">
+                        
+                        <div id="tapa-acrilico" class="tapa-tocadiscos" onclick="abrirCerrarTapa()">
+                            <span id="texto-tapa"></span>
+                        </div>
+
+                        <div class="plato-giratorio" id="zona-plato">
+                            <div id="vinilo-actual" class="vinilo">
+                                <div class="centro-vinilo">
+                                    <img id="portada-centro" src="" alt="">
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <div id="aguja-tocadiscos" class="aguja"></div>
+                    </div>
+                
+                    <div class="panel-controles">
+                        <div class="control-slider">
+                            <label>🔊 Volumen</label>
+                            <input type="range" id="slider-volumen" min="0" max="1" step="0.1" value="1">
+                        </div>
+                    </div>
+                </div>
+    
+            </div>
+        </div>
+    </div>
+    
+    <audio id="reproductor-vinilo" src=""></audio>
+
+    <div id="asistente-peach">
+        <div id="peach-avatar">
+            <img src="Peach___-removebg-preview.png" alt="Peach">
+        </div>
+    </div>
+
+    <script src="script.js"></script>
+
+    <script>
+        const discos = document.querySelectorAll('.disco-item');
+        const plato = document.getElementById('zona-plato');
+        const vinilo = document.getElementById('vinilo-actual');
+        const audioVinilo = document.getElementById('reproductor-vinilo');
+        const aguja = document.getElementById('aguja-tocadiscos');
+        const sliderVolumen = document.getElementById('slider-volumen');
+        const musicaFondoGlobal = document.getElementById('musica-fondo');
+        
+        // VARIABLES MOVIDAS AL PRINCIPIO PARA QUE NO HAYAN ERRORES
+        const tapaAcrilico = document.getElementById('tapa-acrilico');
+        let tapaAbierta = false;
+        let tocadiscosCargado = false;
+        let discoGirando = false;
+        let colorVibra = "#fff";
+        let intervaloNotas;
+
+        // 1. CARGAR EL DISCO AL HACER CLIC
+        discos.forEach(disco => {
+            disco.addEventListener('click', () => {
+                apagarTocadiscos(); // Apagar la canción anterior si estaba sonando
+
+                const imgRuta = disco.getAttribute('data-img');
+                const audioRuta = disco.getAttribute('data-audio');
+                colorVibra = disco.getAttribute('data-color');
+
+                document.getElementById('portada-centro').src = imgRuta;
+                audioVinilo.src = audioRuta;
+                vinilo.style.opacity = "1";
+                tocadiscosCargado = true;
+            });
+        });
+
+        // 2. DAR PLAY O PAUSA CON LA AGUJA
+        aguja.addEventListener('click', () => {
+            // EL CANDADO DE LA TAPA
+            if (!tapaAbierta) {
+                alert("¡Primero tienes que levantar la tapa del tocadiscos!");
+                return;
+            }
+
+            if (!tocadiscosCargado) {
+                alert("¡Primero toca un disco de la mesa para ponerlo en el plato!");
+                return;
+            }
+
+            if (discoGirando) {
+                apagarTocadiscos();
+            } else {
+                encenderTocadiscos();
+            }
+        });
+
+        // 3. CONTROL DE VOLUMEN
+        if (sliderVolumen) {
+            sliderVolumen.addEventListener('input', (e) => {
+                audioVinilo.volume = e.target.value;
+            });
+        }
+
+        // --- FUNCIONES PRINCIPALES ---
+        function encenderTocadiscos() {
+            discoGirando = true;
+            aguja.classList.add('aguja-activa');
+            
+            // Pausar música general
+            if (musicaFondoGlobal) {
+                musicaFondoGlobal.pause();
+                musicaFondoGlobal.volume = 0;
+            }
+            
+            audioVinilo.play();
+            vinilo.classList.add('girando');
+            document.querySelector('.tocadiscos-base').style.boxShadow = `inset 0 0 20px rgba(0,0,0,0.5), 0 10px 40px ${colorVibra}`;
+            
+            // Notas flotando
+            intervaloNotas = setInterval(crearNotaMusical, 1200); 
+        }
+
+        function apagarTocadiscos() {
+            discoGirando = false;
+            aguja.classList.remove('aguja-activa');
+            audioVinilo.pause();
+            vinilo.classList.remove('girando');
+            document.querySelector('.tocadiscos-base').style.boxShadow = `inset 0 0 20px rgba(0,0,0,0.2), 0 10px 30px rgba(0,0,0,0.5)`;
+            clearInterval(intervaloNotas);
+            
+            // Regresar música general
+            if (musicaFondoGlobal && musicaFondoGlobal.paused) {
+                musicaFondoGlobal.volume = 1;
+                musicaFondoGlobal.play();
+            }
+        }
+
+        function crearNotaMusical() {
+            const nota = document.createElement('div');
+            nota.classList.add('nota-musical');
+            const simbolos = ['♪', '♫', '✨', '🤍'];
+            nota.innerText = simbolos[Math.floor(Math.random() * simbolos.length)];
+            nota.style.left = Math.random() * 100 + "vw";
+            nota.style.color = colorVibra;
+            document.body.appendChild(nota);
+            setTimeout(() => nota.remove(), 4000);
+        }
+
+        // Función para levantar la tapa
+        window.abrirCerrarTapa = function() {
+            if (!tapaAbierta) {
+                tapaAcrilico.classList.add('abierta');
+                tapaAbierta = true;
+            } else {
+                tapaAcrilico.classList.remove('abierta');
+                tapaAbierta = false;
+            }
+        };
+        
+    </script>
+</body>
+</html>

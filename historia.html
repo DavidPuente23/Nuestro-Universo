@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <title>Nuestra Historia 📸</title>
+    <link rel="stylesheet" href="style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Homemade+Apple&display=swap" rel="stylesheet">
+</head>
+<body class="fade-in">
+    <video autoplay muted loop playsinline id="video-fondo">
+        <source src="🎨 Try this viral digital planning roundup you’ll want to recreate this weekend using simple ideas you can actually pull off and make your next save - Pin-1031605858407819325.mp4" type="video/mp4">
+    </video>
+    <audio id="musica-fondo" autoplay loop>
+        <source src="ssstik.io_1779566099892.mp3" type="audio/mpeg">
+    </audio>
+
+    <nav>
+        <a href="cartas.html">💌 Cartas</a>
+        <a href="historia.html">📸 Historia</a>
+        <a href="panda.html">🐼 Panda</a>
+        <a href="juegos.html">🎮 Juegos</a>
+        <a href="contrato.html">📜 Contrato</a>
+        <a href="secreto.html">🔒 Secreto</a>
+        <a href="ticket.html">🎟️ Sorpresa</a>
+        <a href="musica.html">🎵 Música</a>
+    </nav>
+
+    <div class="cristal-box">
+        <h1>Nuestra Historia 📸</h1>
+        <p style="margin-bottom: 20px;">Toca las Polaroids para descubrir nuestros secretos...</p>
+        <div class="player-polaroid">
+            <div class="disco-musica" id="disco-btn" onclick="toggleMusica()">🎵</div>
+            <div class="info-musica">
+                <span class="track-name" style="color: #fff; font-weight: bold;">Polaroid Love</span>
+                <span class="artist-name" style="color: #ffb6c1; font-size: 0.8rem;">ENHYPEN</span>
+            </div>
+            <audio id="musica-love" controls loop>
+                <source src="ssstik.io_1779488860367.mp3" type="audio/mp3">
+            </audio>
+        </div>
+        <div class="galeria-polaroid">
+            
+            <div class="polaroid-container" onclick="voltearCarta(this)">
+                <div class="polaroid-inner">
+                    
+                    <div class="polaroid-front polaroid-base">
+                        <img src="WhatsApp Image 2026-05-19 at 8.23.12 PM.jpeg" alt="Nuestro Recuerdo" class="polaroid-img">
+                        <p class="polaroid-date">07 / 05 / 2026</p>
+                    </div>
+                    
+                    <div class="polaroid-back polaroid-base">
+                        <div class="polaroid-mensaje">
+                            <p>Cada dia que te extraño demasiado recuerdo esta foto y recuerdo lo lindo que fue ese dia.</p>
+                            <span>❤️</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="polaroid-container" onclick="voltearCarta(this)">
+                <div class="polaroid-inner">
+                    <div class="polaroid-front polaroid-base">
+                        <img src="WhatsApp Image 2026-05-19 at 8.23.12 PM (1).jpeg" alt="Nuestro Recuerdo" class="polaroid-img">
+                        <p class="polaroid-date">Estrellita</p>
+                    </div>
+                    <div class="polaroid-back polaroid-base">
+                        <div class="polaroid-mensaje">
+                            <p>Lo unico que me arrepiento son dos cosas, no darte un abrazo y no decirte antes sobre la estrellita pero me gusto demasiado tener una foto los dos juntos con una estrellita</p>
+                            <span>✨</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </div>
+
+    <div id="asistente-peach">
+        <div id="peach-chat" class="oculto">
+            <div class="chat-header">
+                <span>👑 Princesa Peach</span>
+                <span id="peach-cerrar">✖</span>
+            </div>
+            
+            <div id="chat-historial">
+                <div class="mensaje peach">
+                    ¡Hola, Dani! 👑 Soy Peach. David me programó para cuidarte y guiarte en esta aventura.<br><br>
+                    <strong>¿No sabes qué decirme? Intenta escribirme esto:</strong><br>
+                    🔍 <em>"Dame una pista"</em><br>
+                    💌 <em>"Dame un recadito"</em><br>
+                    🤭 <em>"Cuéntame un secreto"</em><br>
+                    ⏱️ <em>"¿Cuánto tiempo llevamos?"</em>
+                </div>
+            </div>
+            
+            <div class="chat-input-area">
+                <input type="text" id="chat-input" placeholder="Escribe un mensaje..." autocomplete="off">
+                <button id="btn-enviar">➤</button>
+            </div>
+        </div>
+        
+        <div id="peach-avatar">
+            <img src="Peach___-removebg-preview.png" alt="Peach">
+        </div>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>

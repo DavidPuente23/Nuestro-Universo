@@ -1,0 +1,158 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Nuestro Universo ✨</title>
+    <link rel="stylesheet" href="style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
+</head>
+<body>
+    
+    <video autoplay muted loop playsinline id="video-fondo">
+        <source src="🎨 Try this viral digital planning roundup you’ll want to recreate this weekend using simple ideas you can actually pull off and make your next save - Pin-1031605858407819325.mp4" type="video/mp4">
+    </video>
+    <audio id="musica-fondo" loop>
+        <source src="ssstik.io_1779566099892.mp3" type="audio/mpeg">
+    </audio>
+
+    <div id="lock-screen">
+        
+        <div class="mac-datetime">
+            <h2 class="mac-fecha" id="reloj-fecha">Cargando...</h2>
+            <h1 class="mac-hora" id="reloj-hora">00:00</h1>
+        </div>
+
+        <div class="mac-widget floating">
+            <p>Tiempo extrañándote</p>
+            <div class="contador" id="contador-tiempo">00d 00h 00m 00s</div>
+        </div>
+
+        <div class="mac-login">
+            <div class="mac-avatar">
+                <span>D</span> </div>
+            <h3 class="mac-username">Dani</h3>
+            
+            <div class="mac-password-box" onclick="desbloquearPantalla()">
+                <span>Entrar al universo</span>
+                <div class="mac-enter-btn">➔</div>
+            </div>
+        </div>
+
+    </div>
+
+    <div id="contenido-principal" class="oculto-inicio">
+        
+        <div class="fade-in" style="display: flex; flex-direction: column; justify-content: center; align-items: center; height: 100vh; text-align: center; padding: 20px;">
+            <div class="cristal-box">
+                <h1>Hay personas que aparecen...</h1>
+                <h2>y otras que cambian tu mundo.</h2>
+                <p style="margin: 20px 0; font-size: 1.1rem; color: #eee;">Bienvenida a un lugar hecho especialmente para ti.</p>
+                <a href="cartas.html" class="btn">Entrar al Universo 💌</a>
+            </div>
+        </div>
+
+        <div id="asistente-peach">
+            <div id="peach-chat" class="oculto">
+                <div class="chat-header">
+                    <span>👑 Princesa Peach</span>
+                    <span id="peach-cerrar">✖</span>
+                </div>
+                
+                <div id="chat-historial">
+                    <div class="mensaje peach">
+                        ¡Hola, Dani! 👑 Soy Peach. David me programó para cuidarte y guiarte en esta aventura.<br><br>
+                        <strong>¿No sabes qué decirme? Intenta escribirme esto:</strong><br>
+                        🔍 <em>"Dame una pista"</em><br>
+                        💌 <em>"Dame un recadito"</em><br>
+                        🤭 <em>"Cuéntame un secreto"</em><br>
+                        ⏱️ <em>"¿Cuánto tiempo llevamos?"</em>
+                    </div>
+                </div>
+                
+                <div class="chat-input-area">
+                    <input type="text" id="chat-input" placeholder="Escribe un mensaje..." autocomplete="off">
+                    <button id="btn-enviar">➤</button>
+                </div>
+            </div>
+            
+            <div id="peach-avatar">
+                <img src="Peach___-removebg-preview.png" alt="Peach">
+            </div>
+        </div>
+
+    </div>
+    <script>
+        // 1. Configuración de la fecha (7 de mayo de 2026, 9:00 PM)
+        const fechaInicio = new Date('2026-05-07T21:00:00');
+
+        function actualizarPantallaBloqueo() {
+            const ahora = new Date();
+
+            // Actualizar Reloj
+            let horas = ahora.getHours();
+            let minutos = ahora.getMinutes();
+            horas = horas % 12; 
+            horas = horas ? horas : 12; 
+            minutos = minutos < 10 ? '0' + minutos : minutos;
+            
+            const relojHora = document.getElementById('reloj-hora');
+            if (relojHora) relojHora.innerText = `${horas}:${minutos}`;
+
+            // Actualizar Fecha
+            const opcionesFecha = { weekday: 'long', month: 'long', day: 'numeric' };
+            let textoFecha = ahora.toLocaleDateString('es-MX', opcionesFecha);
+            
+            const relojFecha = document.getElementById('reloj-fecha');
+            if (relojFecha) relojFecha.innerText = textoFecha;
+
+            // Actualizar Contador
+            const diferencia = ahora - fechaInicio;
+            const contadorTiempo = document.getElementById('contador-tiempo');
+
+            if (diferencia > 0 && contadorTiempo) {
+                const dias = Math.floor(diferencia / (1000 * 60 * 60 * 24));
+                const horasExtra = Math.floor((diferencia % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+                const minExtra = Math.floor((diferencia % (1000 * 60 * 60)) / (1000 * 60));
+                const segExtra = Math.floor((diferencia % (1000 * 60)) / 1000);
+
+                contadorTiempo.innerText = `${dias}d ${horasExtra}h ${minExtra}m ${segExtra}s`;
+            }
+        }
+
+        // Arrancar el reloj al instante
+        setInterval(actualizarPantallaBloqueo, 1000);
+        actualizarPantallaBloqueo(); 
+
+        // 2. Función de Desbloqueo fluida
+        function desbloquearPantalla() {
+            const pantalla = document.getElementById('lock-screen');
+            const contenido = document.getElementById('contenido-principal');
+            const musica = document.getElementById('musica-fondo');
+
+            // Reproducir música (Importante para que no la bloquee el navegador)
+            if (musica) {
+                musica.play().catch(error => console.log("La música requiere interacción previa."));
+            }
+
+            // Quitar el blur para que no se trabe y hacer la animación
+            pantalla.style.backdropFilter = 'none';
+            pantalla.style.webkitBackdropFilter = 'none';
+            pantalla.style.opacity = '0';
+            pantalla.style.transform = 'scale(1.05)';
+            
+            // Mostrar contenido principal
+            if (contenido) {
+                contenido.classList.remove('oculto-inicio');
+                contenido.classList.add('mostrar-contenido');
+            }
+            
+            // Apagar la pantalla de bloqueo por completo
+            setTimeout(() => {
+                pantalla.style.display = 'none';
+            }, 600);
+        }
+    </script>
+    <script src="script.js"></script>
+</body>
+</html>

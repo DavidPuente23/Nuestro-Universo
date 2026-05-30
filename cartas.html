@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <title>Cartas 👒</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body class="fade-in">
+    <video autoplay muted loop playsinline id="video-fondo">
+        <source src="🎨 Try this viral digital planning roundup you’ll want to recreate this weekend using simple ideas you can actually pull off and make your next save - Pin-1031605858407819325.mp4" type="video/mp4">
+    </video>
+    <audio id="musica-fondo" autoplay loop>
+        <source src="ssstik.io_1779566099892.mp3" type="audio/mpeg">
+    </audio>
+
+    <nav>
+        <a href="cartas.html">💌 Cartas</a>
+        <a href="historia.html">📸 Historia</a>
+        <a href="panda.html">🐼 Panda</a>
+        <a href="juegos.html">🎮 Juegos</a>
+        <a href="contrato.html">📜 Contrato</a>
+        <a href="secreto.html">🔒 Secreto</a>
+        <a href="ticket.html">🎟️ Sorpresa</a>
+        <a href="musica.html">🎵 Música</a>
+    </nav>
+
+    <div class="contenedor-caja-turquesa">
+        <h1 class="instruccion-caja" id="texto-instruccion">Desliza el moño para abrir... 🎀</h1>
+        
+        <div class="caja-escena">
+            
+            <div class="caja-base">
+                <div class="sobres-container" id="sobres-container">
+                    <a href="carta1.html" class="sobre-item" style="--delay: 0.1s;">💌 Carta 1</a>
+                    <a href="carta2.html" class="sobre-item" style="--delay: 0.3s;">💌 Carta 2</a>
+                    <a href="carta3.html" class="sobre-item" style="--delay: 0.5s;">💌 Carta 3</a>
+                </div>
+            </div>
+
+            <div class="caja-tapa" id="tapa-caja">
+                <div class="lazo-horizontal"></div>
+                <div class="lazo-vertical"></div>
+                
+                <div class="mono-arrastrable" id="mono-caja">🎀</div>
+            </div>
+            
+        </div>
+    </div>
+
+    <div id="asistente-peach">
+        <div id="peach-chat" class="oculto">
+            <div class="chat-header">
+                <span>👑 Princesa Peach</span>
+                <span id="peach-cerrar">✖</span>
+            </div>
+            
+            <div id="chat-historial">
+                <div class="mensaje peach">
+                    ¡Hola, Dani! 👑 Soy Peach. David me programó para cuidarte y guiarte en esta aventura.<br><br>
+                    <strong>¿No sabes qué decirme? Intenta escribirme esto:</strong><br>
+                    🔍 <em>"Dame una pista"</em><br>
+                    💌 <em>"Dame un recadito"</em><br>
+                    🤭 <em>"Cuéntame un secreto"</em><br>
+                    ⏱️ <em>"¿Cuánto tiempo llevamos?"</em>
+                </div>
+            </div>
+            
+            <div class="chat-input-area">
+                <input type="text" id="chat-input" placeholder="Escribe un mensaje..." autocomplete="off">
+                <button id="btn-enviar">➤</button>
+            </div>
+        </div>
+        
+        <div id="peach-avatar">
+            <img src="Peach___-removebg-preview.png" alt="Peach">
+        </div>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>

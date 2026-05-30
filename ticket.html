@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <title>Tus Sorpresas 🎟️</title>
+    <link rel="stylesheet" href="style.css">
+    <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.6.0/dist/confetti.browser.min.js"></script>
+</head>
+<body>
+    <video autoplay muted loop playsinline id="video-fondo">
+        <source src="🎨 Try this viral digital planning roundup you’ll want to recreate this weekend using simple ideas you can actually pull off and make your next save - Pin-1031605858407819325.mp4" type="video/mp4">
+    </video>
+    <audio id="musica-fondo" autoplay loop>
+        <source src="ssstik.io_1779566099892.mp3" type="audio/mpeg">
+    </audio>
+
+    <nav>
+        <a href="cartas.html">💌 Cartas</a>
+        <a href="historia.html">📸 Historia</a>
+        <a href="panda.html">🐼 Panda</a>
+        <a href="juegos.html">🎮 Juegos</a>
+        <a href="contrato.html">📜 Contrato</a>
+        <a href="secreto.html">🔒 Secreto</a>
+        <a href="ticket.html">🎟️ Sorpresa</a>
+        <a href="musica.html">🎵 Música</a>
+    </nav>
+
+    <div class="fade-in" style="display: flex; flex-direction: column; align-items: center; padding: 40px 20px;">
+        <h1 style="margin-bottom: 10px; text-align: center;">Tus Cupones Especiales 🎟️</h1>
+        <p style="margin-bottom: 40px; text-align: center; font-size: 1.1rem; color: #eee;">Usa la moneda para raspar y descubrir tus premios...</p>
+        
+        <div class="contenedor-rascaditos">
+            
+            <div class="cupon-box">
+                <div class="cupon-premio">
+                    <span style="font-size: 40px; display: block; margin-bottom: 10px;">📸</span>
+                    <h3>Sesión Polaroid</h3>
+                    <p>Vale por una tarde de fotos aesthetic juntos. Yo disparo, tú posas.</p>
+                </div>
+                <canvas class="canvas-rascable"></canvas>
+            </div>
+
+            <div class="cupon-box">
+                <div class="cupon-premio">
+                    <span style="font-size: 40px; display: block; margin-bottom: 10px;">🍕</span>
+                    <h3>Noche de Pizza</h3>
+                    <p>Vale por una pizza de pepperoni calientita y maratón de películas.</p>
+                </div>
+                <canvas class="canvas-rascable"></canvas>
+            </div>
+
+            <div class="cupon-box">
+                <div class="cupon-premio">
+                    <span style="font-size: 40px; display: block; margin-bottom: 10px;">🧧</span>
+                    <h3 style="color: #ff4d6d; font-size: 1.3rem;">EN-O'CLOCK VIP</h3>
+                    <p>Vale por un maratón de Enhypen con tu comida favorita. ¡Yo no me duermo!</p>
+                </div>
+                <canvas class="canvas-rascable"></canvas>
+            </div>
+
+            <div class="cupon-box">
+                <div class="cupon-premio">
+                    <span style="font-size: 40px; display: block; margin-bottom: 10px;">🃏</span>
+                    <h3>Comodín</h3>
+                    <p>Vale por un "Sí" automático a cualquier cosa que me pidas hoy.</p>
+                </div>
+                <canvas class="canvas-rascable"></canvas>
+            </div>
+
+            <div class="cupon-box">
+                <div class="cupon-premio">
+                    <span style="font-size: 40px; display: block; margin-bottom: 10px;">🎮</span>
+                    <h3>Pase VIP Player 1</h3>
+                    <p>Vale por una tarde de cooperativo en Xbox en mi casa o Roblox online. Tú eliges a qué jugamos</p>
+                </div>
+                <canvas class="canvas-rascable"></canvas>
+            </div>
+
+            <div class="cupon-box">
+                <div class="cupon-premio">
+                    <span style="font-size: 40px; display: block; margin-bottom: 10px;">🫂</span>
+                    <h3>El Abrazo Prometido</h3>
+                    <p>Canjeable exactamente el día que nos veamos. Válido por ese abrazo súper especial de nuestra promesa.</p>
+                </div>
+                <canvas class="canvas-rascable"></canvas>
+            </div>
+
+        </div>
+    </div>
+
+    <div id="asistente-peach">
+        <div id="peach-chat" class="oculto">
+            <div class="chat-header">
+                <span>👑 Princesa Peach</span>
+                <span id="peach-cerrar">✖</span>
+            </div>
+            
+            <div id="chat-historial">
+                <div class="mensaje peach">
+                    ¡Hola, Dani! 👑 Soy Peach. David me programó para cuidarte y guiarte en esta aventura.<br><br>
+                    <strong>¿No sabes qué decirme? Intenta escribirme esto:</strong><br>
+                    🔍 <em>"Dame una pista"</em><br>
+                    💌 <em>"Dame un recadito"</em><br>
+                    🤭 <em>"Cuéntame un secreto"</em><br>
+                    ⏱️ <em>"¿Cuánto tiempo llevamos?"</em>
+                </div>
+            </div>
+            
+            <div class="chat-input-area">
+                <input type="text" id="chat-input" placeholder="Escribe un mensaje..." autocomplete="off">
+                <button id="btn-enviar">➤</button>
+            </div>
+        </div>
+        
+        <div id="peach-avatar">
+            <img src="Peach___-removebg-preview.png" alt="Peach">
+        </div>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>

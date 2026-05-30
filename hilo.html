@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>El Hilo Rojo 🧶</title>
+    <link rel="stylesheet" href="style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;1,400&display=swap" rel="stylesheet">
+</head>
+<body class="fade-in">
+
+    <video autoplay muted loop playsinline id="video-fondo">
+        <source src="fondo.mp4" type="video/mp4">
+    </video>
+    <audio id="musica-fondo" autoplay loop>
+        <source src="ssstik.io_1779566099892.mp3" type="audio/mpeg">
+    </audio>
+
+    <nav>
+        <a href="cartas.html">💌 Cartas</a>
+        <a href="historia.html">📸 Historia</a>
+        <a href="panda.html">🐼 Panda</a>
+        <a href="juegos.html">🎮 Juegos</a>
+        <a href="contrato.html">📜 Contrato</a>
+        <a href="secreto.html">🔒 Secreto</a>
+        <a href="ticket.html">🎟️ Sorpresa</a>
+        <a href="musica.html">🎵 Música</a>
+    </nav>
+
+    <div class="indicador-scroll">Desliza hacia abajo... 👇</div>
+
+    <div class="historia-container">
+        
+        <svg class="svg-container" viewBox="0 0 100 1000" preserveAspectRatio="none">
+            <path id="hilo-magico" d="
+                M 50 10 
+                C 100 150, -20 250, 50 350 
+                C 120 450, -20 550, 50 650
+                C 120 750, -20 850, 50 960
+            "></path>
+        </svg>
+
+        <div class="parada inicio">
+            <h2>El Hilo Rojo</h2>
+            <p>Una antigua leyenda dice que las personas destinadas a conocerse están conectadas por un hilo rojo invisible atado a sus meñiques. Este hilo puede estirarse, enredarse, pero <strong>nunca romperse</strong>.</p>
+        </div>
+
+        <div class="parada mitad-1">
+            <h2>Nuestra Primera Curva</h2>
+            <p>Incluso antes de darnos cuenta, el universo ya estaba jalando este hilo. Cada decisión y cada detalle nos estaba preparando exactamente para el momento en que nos cruzamos.</p>
+        </div>
+
+        <div class="parada mitad-2">
+            <h2>El Enredo Perfecto</h2>
+            <p>Dicen que el amor llega a desenredar el caos de la mente. Desde que entraste a mi vida, todo ese desorden cobró sentido. Eres la calma en medio de mi tormenta.</p>
+        </div>
+
+        <div class="parada mitad-3">
+            <h2>A Prueba de Todo</h2>
+            <p>He comprobado que la leyenda es real. Todo este tiempo estuve caminando hacia ti, siguiendo este hilo a ciegas, hasta encontrarte.</p>
+        </div>
+
+        <div class="parada final">
+            <div class="corazon-final">❤️</div>
+            <h2>El Destino Eras Tú</h2>
+            <p style="background: rgba(255, 77, 109, 0.2); border-color: #ff4d6d;">Mi lugar seguro no es un sitio físico en el mapa. Mi lugar favorito está exactamente al final de este hilo, justo contigo.</p>
+        </div>
+
+    </div>
+
+    <div id="asistente-peach">
+        <div id="peach-chat" class="oculto">
+            <div class="chat-header">
+                <span>👑 Princesa Peach</span>
+                <span id="peach-cerrar">✖</span>
+            </div>
+            
+            <div id="chat-historial">
+                <div class="mensaje peach">
+                    ¡Hola, Dani! 👑 Soy Peach. David me programó para cuidarte y guiarte en esta aventura.<br><br>
+                    <strong>¿No sabes qué decirme? Intenta escribirme esto:</strong><br>
+                    🔍 <em>"Dame una pista"</em><br>
+                    💌 <em>"Dame un recadito"</em><br>
+                    🤭 <em>"Cuéntame un secreto"</em><br>
+                    ⏱️ <em>"¿Cuánto tiempo llevamos?"</em>
+                </div>
+            </div>
+            
+            <div class="chat-input-area">
+                <input type="text" id="chat-input" placeholder="Escribe un mensaje..." autocomplete="off">
+                <button id="btn-enviar">➤</button>
+            </div>
+        </div>
+        
+        <div id="peach-avatar">
+            <img src="Peach___-removebg-preview.png" alt="Peach">
+        </div>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>

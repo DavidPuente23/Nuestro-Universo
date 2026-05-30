@@ -1,0 +1,2059 @@
+@import url('https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;1,400&family=Poppins:wght@300;400;600&family=Caveat&display=swap');
+
+:root {
+    --rosa-suave: #ffb6c1;
+    --morado-claro: #d7bde2;
+    --cristal: rgba(255, 255, 255, 0.15); /* Un poco más blanco para que resalte en el rosa */
+    --cristal-borde: rgba(255, 255, 255, 0.3);
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    cursor: crosshair;
+}
+
+body {
+    background: transparent; /* IMPRESCINDIBLE: Hace transparente el fondo para que se vea el video */
+    color: #fff; /* Texto en blanco para que contraste con el video oscuro */
+    font-family: 'Poppins', sans-serif;
+    min-height: 100vh;
+    overflow-x: hidden;
+    padding-bottom: 100px; 
+}
+
+/* Reajustamos los títulos para que brillen sobre el video */
+h1, h2, h3 {
+    font-family: 'Playfair Display', serif;
+    color: var(--rosa-suave);
+    text-shadow: 0 2px 15px rgba(0, 0, 0, 0.7); /* Sombra más fuerte para lectura perfecta */
+}
+
+.fade-in {
+    animation: aparecer 0.8s ease-out; /* Animación más rápida */
+}
+
+@keyframes aparecer {
+    from { opacity: 0; transform: translateY(15px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+
+/* Cursor de Brillos - Animación optimizada */
+.brillo {
+    position: absolute;
+    width: 6px; height: 6px;
+    background: #fff;
+    border-radius: 50%;
+    pointer-events: none;
+    box-shadow: 0 0 8px var(--rosa-suave);
+    animation: desvanecer 0.6s forwards ease-out; /* Más rápido */
+    z-index: 9999;
+}
+
+@keyframes desvanecer {
+    0% { opacity: 1; transform: scale(1); }
+    100% { opacity: 0; transform: scale(0); }
+}
+
+/* Menú de Navegación */
+nav {
+    position: fixed;
+    bottom: 20px;
+    left: 50%;
+    transform: translateX(-50%);
+    background: rgba(20, 15, 35, 0.85); /* Se cambió el blur pesado por un color sólido semitransparente */
+    border: 1px solid var(--cristal-borde);
+    padding: 12px 25px;
+    border-radius: 40px;
+    display: flex;
+    gap: 15px;
+    z-index: 1000;
+    box-shadow: 0 5px 20px rgba(0,0,0,0.5);
+}
+
+nav a {
+    text-decoration: none;
+    color: #fff;
+    font-size: 0.9rem;
+    font-weight: 600;
+    padding: 8px 15px;
+    border-radius: 20px;
+    transition: 0.2s;
+}
+
+nav a:hover, nav a.activo {
+    background: var(--rosa-suave);
+    color: #0f0c29;
+}
+
+/* Contenedores de Cristal */
+.cristal-box {
+    background: var(--cristal);
+    backdrop-filter: blur(8px); /* Blur reducido a la mitad para mejor rendimiento */
+    -webkit-backdrop-filter: blur(8px);
+    border: 1px solid var(--cristal-borde);
+    border-radius: 20px;
+    padding: 40px;
+    max-width: 800px;
+    margin: 50px auto;
+    text-align: center;
+    box-shadow: 0 10px 25px rgba(0,0,0,0.2);
+}
+
+/* Botones */
+button, .btn {
+    background: transparent;
+    color: var(--rosa-suave);
+    border: 2px solid var(--rosa-suave);
+    padding: 10px 20px;
+    border-radius: 30px;
+    font-family: 'Poppins', sans-serif;
+    font-size: 1rem;
+    font-weight: 600;
+    text-transform: uppercase;
+    transition: 0.3s;
+    text-decoration: none;
+    display: inline-block;
+    margin-top: 20px;
+}
+
+button:hover, .btn:hover {
+    background: var(--rosa-suave);
+    color: #0f0c29;
+    transform: translateY(-2px);
+}
+
+/* Historia - Polaroid */
+.grid-historia { display: flex; flex-wrap: wrap; justify-content: center; gap: 30px; margin-top: 30px; }
+.polaroid { background: #fff; padding: 15px 15px 40px 15px; box-shadow: 0 5px 15px rgba(0,0,0,0.4); transform: rotate(-3deg); transition: 0.3s; width: 250px; color: #333; }
+.polaroid:nth-child(even) { transform: rotate(4deg); }
+.polaroid:hover { transform: scale(1.05) rotate(0deg); z-index: 10; }
+.polaroid-img { width: 100%; height: 200px; background: #ccc; border: 1px solid #ddd; object-fit: cover; }
+.polaroid p { font-family: 'Caveat', cursive; font-size: 1.5rem; margin-top: 15px; text-align: center; }
+
+/* Cartas */
+.grid-cartas { display: flex; justify-content: center; gap: 20px; flex-wrap: wrap; margin-top: 30px; }
+.sobre { background: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%); color: #333; padding: 40px 20px; width: 200px; border-radius: 10px; font-family: 'Playfair Display', serif; font-size: 1.1rem; font-style: italic; box-shadow: 0 8px 15px rgba(0,0,0,0.2); transition: 0.3s; border-bottom: 8px solid var(--rosa-suave); position: relative; overflow: hidden; }
+.sobre::after { content: '💌'; position: absolute; bottom: 10px; right: 10px; opacity: 0.5; }
+.sobre:hover { transform: translateY(-5px); }
+
+/* Modales */
+.modal { position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.8); display: flex; justify-content: center; align-items: center; z-index: 2000; }
+.oculto { display: none !important; }
+.modal-contenido { background: #fff; color: #333; padding: 30px; border-radius: 10px; width: 90%; max-width: 500px; text-align: left; position: relative; font-family: 'Playfair Display', serif; font-size: 1.2rem; line-height: 1.6; }
+.cerrar { position: absolute; top: 10px; right: 20px; font-size: 30px; color: #888; cursor: pointer; }
+
+/* Inputs */
+input[type="text"], input[type="password"] { width: 80%; padding: 12px; border-radius: 10px; border: none; margin: 20px 0; text-align: center; font-family: 'Poppins', sans-serif; font-size: 1rem; background: rgba(255,255,255,0.9); }
+
+/* Atrapa Corazones (Optimizado) */
+#area-corazones { width: 100%; height: 250px; position: relative; overflow: hidden; background: rgba(0,0,0,0.3); border-radius: 15px; margin-top: 20px; display: none; }
+/* Usamos transform en lugar de top para usar la GPU del navegador */
+.corazon-cayendo { position: absolute; font-size: 30px; transform: translateY(-40px); user-select: none; transition: transform 2.5s linear; will-change: transform; }
+
+/* =========================================
+   NUEVOS EXTRAS (1 AL 4)
+========================================= */
+
+/* 1. POLAROIDS 3D (Efecto Volteo) */
+.polaroid-container {
+    background-color: transparent;
+    width: 250px;
+    height: 350px;
+    perspective: 1000px; /* Crea el espacio 3D */
+    margin: 10px;
+}
+
+.polaroid-inner {
+    position: relative;
+    width: 100%;
+    height: 100%;
+    text-align: center;
+    transition: transform 0.8s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+    transform-style: preserve-3d;
+}
+
+.polaroid-container:hover .polaroid-inner {
+    transform: rotateY(180deg);
+}
+
+.polaroid-front, .polaroid-back {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    backface-visibility: hidden;
+    background: #fff;
+    padding: 15px 15px 40px 15px;
+    box-shadow: 0 10px 20px rgba(0,0,0,0.5);
+    border-radius: 5px;
+    color: #333;
+}
+
+.polaroid-back {
+    transform: rotateY(180deg);
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    background: #fdfaf6;
+    padding: 20px;
+    border: 2px dashed var(--rosa-suave);
+}
+
+.polaroid-back p {
+    font-family: 'Caveat', cursive;
+    font-size: 1.6rem;
+    color: #444;
+}
+
+/* 2. TICKET VIP */
+.ticket-vip {
+    background: linear-gradient(135deg, #ffd700, #ff8c00);
+    border-radius: 15px;
+    padding: 30px;
+    color: #fff;
+    text-shadow: 0 1px 3px rgba(0,0,0,0.3);
+    position: relative;
+    overflow: hidden;
+    box-shadow: 0 15px 30px rgba(255, 215, 0, 0.3);
+    border: 3px dashed #fff;
+    margin: 30px auto;
+    max-width: 400px;
+    transform: rotate(-2deg);
+    transition: 0.3s;
+}
+
+.ticket-vip:hover {
+    transform: scale(1.05) rotate(0deg);
+}
+
+/* 3. MASCOTA VIRTUAL (Gatito) */
+#mascota-virtual {
+    position: fixed;
+    bottom: 90px;
+    right: 30px;
+    z-index: 999;
+    cursor: pointer;
+    text-align: center;
+    transition: transform 0.3s;
+}
+
+#mascota-virtual:hover {
+    transform: scale(1.1);
+}
+
+.globo-dialogo {
+    background: #fff;
+    color: #333;
+    padding: 10px 15px;
+    border-radius: 15px;
+    font-family: 'Poppins', sans-serif;
+    font-size: 0.9rem;
+    position: absolute;
+    bottom: 60px;
+    right: -10px;
+    width: 160px;
+    box-shadow: 0 5px 15px rgba(0,0,0,0.3);
+    animation: aparecer 0.3s ease-out;
+}
+
+.globo-dialogo::after {
+    content: '';
+    position: absolute;
+    bottom: -10px;
+    right: 30px;
+    border-width: 10px 10px 0;
+    border-style: solid;
+    border-color: #fff transparent transparent transparent;
+}
+
+/* 4. REPRODUCTOR BUZÓN DE VOZ */
+.reproductor-voz {
+    background: rgba(255, 255, 255, 0.1);
+    border: 1px solid var(--cristal-borde);
+    padding: 20px;
+    border-radius: 50px;
+    display: inline-flex;
+    align-items: center;
+    gap: 15px;
+    margin-top: 20px;
+}
+
+.btn-play {
+    background: var(--rosa-suave);
+    color: #0f0c29;
+    border: none;
+    width: 50px; height: 50px;
+    border-radius: 50%;
+    font-size: 1.5rem;
+    display: flex; justify-content: center; align-items: center;
+    box-shadow: 0 0 15px var(--rosa-suave);
+}
+
+/* =========================================
+   ESTILOS PRINCESAS DISNEY (1, 2, 3)
+========================================= */
+
+/* 1. Bella y Bestia (Pétalos) */
+.petalo-rosa {
+    position: absolute;
+    width: 25px; height: 25px;
+    background: radial-gradient(circle, #e74c3c 0%, #c0392b 100%); /* Color pétalo */
+    border-radius: 50% 0 50% 50%;
+    cursor: pointer;
+    box-shadow: 0 5px 10px rgba(0,0,0,0.3);
+    animation: caerPetalo 4s linear forwards;
+    z-index: 10;
+}
+
+@keyframes caerPetalo {
+    0% { top: -30px; transform: rotate(0deg) translateX(0); opacity: 1; }
+    100% { top: 380px; transform: rotate(360deg) translateX(10px); opacity: 0; } /* Desaparece abajo */
+}
+
+/* 2. Cenicienta (Siluetas) */
+.silueta-zapatilla {
+    font-size: 50px;
+    cursor: pointer;
+    transition: 0.3s;
+    user-select: none;
+}
+.silueta-zapatilla:hover {
+    opacity: 1 !important;
+    transform: scale(1.1);
+}
+
+/* =========================================
+   ESTILO DEL VIDEO DE FONDO (FLUIDO Y AJUSTADO)
+========================================= */
+#video-fondo {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    object-fit: cover; 
+    z-index: -2; 
+    pointer-events: none; 
+    
+    /* --- TRUCOS ANTI-LAG --- */
+    transform: translateZ(0); /* Obliga a usar la tarjeta gráfica */
+    will-change: transform; /* Prepara la memoria para el video */
+    backface-visibility: hidden; /* Evita parpadeos */
+}
+
+/* Agregamos un filtro de cine suave encima del video para suavizarlo y mejorar la fluidez visual */
+body::before {
+    content: '';
+    position: fixed;
+    top: 0; left: 0; width: 100vw; height: 100vh;
+    background: linear-gradient(to bottom, rgba(26, 5, 13, 0.3), rgba(26, 5, 13, 0.6)); /* Capa de contraste */
+    z-index: -1; /* Va arriba del video pero abajo de tus textos y cajas de cristal */
+    pointer-events: none;
+}
+
+/* Optimizamos tus cajas de cristal para que el video se alcance a ver hermoso a través de ellas */
+.cristal-box {
+    background: rgba(255, 255, 255, 0.08) !important;
+    backdrop-filter: blur(5px) !important; /* <--- Bájale este número */
+    -webkit-backdrop-filter: blur(5px) !important; /* <--- Y este también */
+    border: 1px solid rgba(255, 255, 255, 0.1) !important;
+    box-shadow: 0 10px 25px rgba(0, 0, 0, 0.3) !important;
+}
+
+/* =========================================
+   CUPONES RASCABLES (TICKETS)
+========================================= */
+
+.contenedor-rascaditos {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 30px;
+    width: 100%;
+    max-width: 900px;
+}
+
+.cupon-box {
+    position: relative;
+    width: 100%;
+    height: 220px;
+    background: rgba(255, 255, 255, 0.1);
+    backdrop-filter: blur(15px);
+    border: 2px dashed var(--rosa-suave);
+    border-radius: 15px;
+    overflow: hidden;
+    box-shadow: 0 10px 25px rgba(0,0,0,0.5);
+}
+
+/* El contenido del premio (Lo que está debajo) */
+.cupon-premio {
+    position: absolute;
+    top: 0; left: 0; width: 100%; height: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    padding: 20px;
+    z-index: 1;
+}
+
+.cupon-premio h3 {
+    font-family: 'Playfair Display', serif;
+    color: var(--rosa-suave);
+    margin-bottom: 10px;
+    font-size: 1.5rem;
+}
+
+.cupon-premio p {
+    font-size: 0.95rem;
+    line-height: 1.4;
+    color: #fff;
+}
+
+/* El lienzo que tapa el premio */
+.canvas-rascable {
+    position: absolute;
+    top: 0; left: 0; width: 100%; height: 100%;
+    z-index: 5;
+    /* El toque cool: Un cursor de moneda al pasar por encima */
+    cursor: url('https://cdn-icons-png.flaticon.com/32/2529/2529396.png'), crosshair;
+    transition: opacity 0.5s ease;
+}
+
+/* =========================================
+   ESTILOS ENHYPEN (POLAROIDS Y PHOTOCARDS)
+========================================= */
+
+/* =========================================
+   NUEVO ESTILO: POLAROIDS REVERSIBLES 3D
+========================================= */
+
+.galeria-polaroid { 
+    display: flex; 
+    gap: 40px; 
+    justify-content: center; 
+    flex-wrap: wrap; 
+    margin-top: 40px; 
+    padding-bottom: 50px;
+}
+
+/* Contenedor principal que maneja la perspectiva 3D */
+.polaroid-container {
+    perspective: 1500px; /* Profundidad del giro */
+    width: 290px; /* Tamaño GRANDE */
+    height: 360px;
+    cursor: pointer;
+    position: relative;
+    /* Mantenemos la animación de flotar constantementea */
+    animation: flotarPolaroid 4s ease-in-out infinite;
+}
+
+.polaroid-container:nth-child(even) {
+    animation-delay: 2s;
+}
+
+/* Efecto ZOOM al pasar el mouse (antes de voltearla) */
+.polaroid-container:hover {
+    transform: scale(1.05); /* Zoom suave */
+    transition: transform 0.3s ease;
+    z-index: 10;
+}
+
+/* El elemento interno que hace el giro real */
+.polaroid-inner {
+    position: relative;
+    width: 100%;
+    height: 100%;
+    transition: transform 0.8s cubic-bezier(0.175, 0.885, 0.32, 1.275); /* Giro suave y orgánico */
+    transform-style: preserve-3d; /* Obligatorio para 3D */
+}
+
+/* Clase que activa JavaScript para voltear la carta */
+.polaroid-container.flipped .polaroid-inner {
+    transform: rotateY(180deg);
+}
+
+/* Estilo base de la Polaroid (El papel blanco) */
+.polaroid-base {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    background: white;
+    backface-visibility: hidden; /* Oculta la parte de atrás mientras gira */
+    border-radius: 5px; /* Bordes ligeramente redondeados */
+    box-shadow: 0 10px 30px rgba(0,0,0,0.4); /* Sombra elegante */
+    overflow: hidden;
+    display: flex;
+    flex-direction: column;
+}
+
+/* --- FRENTE (La Foto) --- */
+.polaroid-front {
+    padding: 18px 18px 0px 18px; /* Espacio para el marco blanco */
+}
+
+.polaroid-img {
+    width: 100%;
+    height: 260px; /* Área de la foto cuadrada/rectangular */
+    object-fit: cover;
+    border: 1px solid #ddd; /* Pequeño borde a la foto */
+}
+
+.polaroid-date {
+    color: #333;
+    font-family: 'Playfair Display', serif; /* Fuente elegante */
+    text-align: center;
+    margin-top: 20px;
+    font-size: 1.2rem;
+    font-weight: bold;
+    letter-spacing: 1px;
+}
+
+/* --- REVERSO (El Mensaje) --- */
+.polaroid-back {
+    transform: rotateY(180deg); /* Empieza volteada */
+    padding: 30px;
+    justify-content: center;
+    align-items: center;
+    background-color: #fff; /* O puedes ponerle un tono crema claro #fdfcf5 */
+}
+
+.polaroid-mensaje {
+    text-align: center;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    height: 100%;
+}
+
+.polaroid-mensaje p {
+    color: #444;
+    font-family: 'Homemade Apple', cursive; /* Fuente manuscrita (si la cargaste en el HTML) */
+    /* Si no cargaste la font manuscrita, usa esta: font-family: 'Georgia', serif; font-style: italic; */
+    font-size: 1.1rem;
+    line-height: 1.6;
+    margin-bottom: 20px;
+}
+
+.polaroid-mensaje span {
+    font-size: 2rem; /* El corazón o emoji */
+}
+
+/* Animación para que floten sutilmente */
+@keyframes flotarPolaroid {
+    0%, 100% { transform: translateY(0px) rotate(-2deg); }
+    50% { transform: translateY(-15px) rotate(2deg); } /* Sube un poco y cambia rotación */
+}
+
+/* =========================================
+   REPRODUCTOR MUSICAL (HISTORIA)
+========================================= */
+
+.player-polaroid { 
+    background: rgba(0,0,0,0.5); 
+    padding: 10px 20px; 
+    border-radius: 50px; 
+    display: flex; 
+    align-items: center; 
+    gap: 15px; 
+    border: 1px solid var(--rosa-suave); 
+    width: fit-content; 
+    margin: 0 auto 30px auto; /* Centrado y con espacio abajo */
+}
+
+.info-musica { 
+    display: flex; 
+    flex-direction: column; 
+    text-align: left; 
+}
+
+.disco-musica { 
+    width: 40px; 
+    height: 40px; 
+    background: var(--rosa-suave); 
+    border-radius: 50%; 
+    display: flex; 
+    align-items: center; 
+    justify-content: center; 
+    cursor: pointer; 
+    animation: girar 4s linear infinite; 
+    animation-play-state: paused; 
+    font-size: 1.2rem; 
+}
+
+.disco-musica.playing { 
+    animation-play-state: running; 
+}
+
+@keyframes girar { 
+    from { transform: rotate(0deg); } 
+    to { transform: rotate(360deg); } 
+}
+
+/* =========================================
+   MINIJUEGO: EL LECTOR DE MENTES
+========================================= */
+
+.mente-box {
+    max-width: 700px;
+    margin: 40px auto;
+    text-align: center;
+    padding: 40px 30px;
+}
+
+.instruccion-mente {
+    font-family: 'Playfair Display', serif;
+    font-size: 1.2rem;
+    color: #d7bde2; /* Un tono un poco más frío/misterioso */
+    font-style: italic;
+    margin-bottom: 40px;
+}
+
+#input-mente {
+    width: 100%;
+    height: 250px;
+    background: rgba(0, 0, 0, 0.4);
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    border-radius: 10px;
+    padding: 25px;
+    color: #fff;
+    /* Usamos una tipografía estilo máquina de escribir para darle misterio */
+    font-family: 'Courier New', Courier, monospace; 
+    font-size: 1.3rem;
+    line-height: 1.6;
+    resize: none;
+    outline: none;
+    box-shadow: inset 0 0 20px rgba(0,0,0,0.8);
+    transition: 0.4s;
+}
+
+#input-mente:focus {
+    border-color: var(--rosa-suave);
+    box-shadow: inset 0 0 20px rgba(255, 182, 193, 0.2), 0 0 15px rgba(255, 182, 193, 0.1);
+    background: rgba(0, 0, 0, 0.6);
+}
+
+/* =========================================
+   EL CONTRATO (HOJA DE LIBRETA)
+========================================= */
+.contenedor-contrato {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 40px 20px;
+    width: 100%;
+}
+
+.notebook-paper {
+    background-color: #fdfaf6;
+    width: 100%;
+    max-width: 600px;
+    padding: 50px 40px 40px 80px;
+    position: relative;
+    border-radius: 5px;
+    box-shadow: 0 15px 35px rgba(0,0,0,0.4);
+    /* Las líneas azules de la libreta */
+    background-image: repeating-linear-gradient(
+        transparent, 
+        transparent 31px, 
+        #a6c2d9 31px, 
+        #a6c2d9 32px
+    );
+    line-height: 32px; /* Sincronizado con las rayas */
+}
+
+/* La línea roja del margen */
+.notebook-paper::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 50px;
+    bottom: 0;
+    width: 2px;
+    background-color: #ff8c8c;
+    z-index: 1;
+}
+
+.titulo-contrato {
+    font-family: 'Caveat', cursive;
+    font-size: 3rem;
+    color: #2c3e50;
+    text-align: center;
+    margin-bottom: 10px;
+    position: relative;
+    z-index: 2;
+}
+
+.subtitulo-contrato, .zona-firma p {
+    font-family: 'Caveat', cursive;
+    font-size: 1.5rem;
+    color: #444;
+    position: relative;
+    z-index: 2;
+}
+
+.clausulas {
+    margin: 30px 0;
+    position: relative;
+    z-index: 2;
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
+
+.clausula-item {
+    font-family: 'Caveat', cursive;
+    font-size: 1.6rem;
+    color: #1a1a1a;
+    display: flex;
+    align-items: flex-start;
+    cursor: pointer;
+}
+
+.clausula-item input {
+    display: none; /* Ocultamos el checkbox feo por defecto */
+}
+
+.custom-check {
+    width: 24px;
+    height: 24px;
+    border: 2px solid #333;
+    border-radius: 4px;
+    margin-right: 15px;
+    margin-top: 5px;
+    display: inline-block;
+    position: relative;
+    flex-shrink: 0;
+    transition: 0.3s;
+}
+
+/* El ganchito de check dibujado */
+.clausula-item input:checked + .custom-check::after {
+    content: '✔';
+    position: absolute;
+    top: -8px;
+    left: 2px;
+    color: #d63031;
+    font-size: 28px;
+}
+
+.zona-firma {
+    margin-top: 40px;
+    position: relative;
+    z-index: 2;
+}
+
+.canvas-container {
+    width: 100%;
+    height: 150px;
+    border-bottom: 2px solid #333;
+    background: rgba(255, 255, 255, 0.4);
+    margin-bottom: 10px;
+}
+
+#canvas-firma {
+    width: 100%;
+    height: 100%;
+    cursor: crosshair;
+}
+
+.firmas-nombres {
+    display: flex;
+    justify-content: space-between;
+    font-family: 'Caveat', cursive;
+    font-size: 1.4rem;
+    color: #555;
+    padding: 0 20px;
+}
+
+#btn-aceptar-contrato {
+    display: block;
+    width: 100%;
+    padding: 15px;
+    margin-top: 40px;
+    background: #ccc;
+    color: #fff;
+    font-size: 1.2rem;
+    font-family: 'Playfair Display', serif;
+    border: none;
+    border-radius: 8px;
+    cursor: not-allowed;
+    position: relative;
+    z-index: 2;
+    transition: 0.4s;
+}
+
+/* Cuando todo está correcto, el botón cobra vida */
+#btn-aceptar-contrato:not([disabled]) {
+    background: #ff4d6d;
+    cursor: pointer;
+    box-shadow: 0 0 20px rgba(255, 77, 109, 0.5);
+    animation: latido 1.5s infinite;
+}
+
+@keyframes latido {
+    0% { transform: scale(1); }
+    50% { transform: scale(1.02); }
+    100% { transform: scale(1); }
+}
+
+/* =========================================
+   LA CAJA SOMBRERERA TURQUESA
+========================================= */
+
+.contenedor-caja-turquesa {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    height: 75vh;
+    overflow: hidden;
+    position: relative;
+    z-index: 5;
+}
+
+.instruccion-caja {
+    font-family: 'Playfair Display', serif;
+    color: #fff;
+    text-shadow: 0 5px 15px rgba(0,0,0,0.5);
+    margin-bottom: 50px;
+    font-size: 2rem;
+    transition: opacity 0.5s ease;
+}
+
+.caja-escena {
+    position: relative;
+    width: 300px;
+    height: 300px;
+}
+
+/* El interior de la caja */
+.caja-base {
+    position: absolute;
+    top: 0; left: 0; width: 100%; height: 100%;
+    background: #1b857c; /* Turquesa oscuro para dar profundidad */
+    border-radius: 50%;
+    box-shadow: inset 0 15px 40px rgba(0,0,0,0.6), 0 20px 50px rgba(0,0,0,0.4);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+/* La Tapa Superior */
+.caja-tapa {
+    position: absolute;
+    top: -10px; left: -10px; /* Un poco más grande que la base */
+    width: 320px; height: 320px;
+    background: #30D5C8; /* El icónico turquesa */
+    border-radius: 50%;
+    box-shadow: 0 15px 35px rgba(0,0,0,0.5), inset 0 5px 15px rgba(255,255,255,0.4);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    /* La animación de volar */
+    transition: transform 1.2s cubic-bezier(0.175, 0.885, 0.32, 1.275), opacity 1s ease;
+    z-index: 10;
+}
+
+/* Animación cuando la caja se abre */
+.vuela-tapa {
+    transform: translateY(-500px) rotate(25deg) scale(1.1);
+    opacity: 0;
+    pointer-events: none;
+}
+
+/* Las cintas rosas del regalo */
+.lazo-horizontal { position: absolute; width: 100%; height: 40px; background: #FFB6C1; box-shadow: 0 5px 10px rgba(0,0,0,0.1); }
+.lazo-vertical { position: absolute; width: 40px; height: 100%; background: #FFB6C1; box-shadow: 5px 0 10px rgba(0,0,0,0.1); }
+
+/* El moño que ella tiene que arrastrar */
+.mono-arrastrable {
+    position: relative;
+    z-index: 15;
+    font-size: 80px;
+    cursor: grab;
+    user-select: none;
+    filter: drop-shadow(0 10px 15px rgba(0,0,0,0.4));
+    transition: transform 0.1s;
+}
+
+.mono-arrastrable:active {
+    cursor: grabbing;
+    transform: scale(1.1);
+}
+
+/* =========================================
+   ANIMACIÓN DE LAS CARTAS SALIENDO
+========================================= */
+
+.sobres-container {
+    position: relative; width: 100%; height: 100%;
+    display: flex; justify-content: center; align-items: center;
+}
+
+.sobre-item {
+    position: absolute;
+    background: #fff;
+    padding: 15px 25px;
+    border-radius: 8px;
+    border: 2px solid #FFB6C1;
+    text-decoration: none;
+    color: #d63031;
+    font-weight: bold;
+    font-family: 'Playfair Display', serif;
+    font-size: 1.2rem;
+    box-shadow: 0 10px 20px rgba(0,0,0,0.3);
+    /* Inician pequeñas y al fondo */
+    transform: translateY(50px) scale(0.3);
+    opacity: 0;
+    transition: all 0.8s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+    transition-delay: var(--delay);
+}
+
+/* Posiciones de las cartas al destapar la caja */
+.mostrar-cartas .sobre-item:nth-child(1) { transform: translate(-100px, -70px) rotate(-15deg) scale(1); opacity: 1; z-index: 2; }
+.mostrar-cartas .sobre-item:nth-child(2) { transform: translate(0px, -120px) rotate(5deg) scale(1.1); opacity: 1; z-index: 3; }
+.mostrar-cartas .sobre-item:nth-child(3) { transform: translate(100px, -50px) rotate(20deg) scale(1); opacity: 1; z-index: 2; }
+
+/* Efecto hover al pasar el mouse por las cartas ya reveladas */
+.mostrar-cartas .sobre-item:hover {
+    transform: scale(1.2) translateY(-10px) !important;
+    z-index: 10 !important;
+    box-shadow: 0 15px 30px rgba(0,0,0,0.5);
+    background: #FFB6C1;
+    color: #fff;
+}
+
+/* =========================================
+   ESTILO DE HOJA DE LIBRETA (CARTAS Y CONTRATO)
+========================================= */
+.contenedor-contrato {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 40px 20px;
+    width: 100%;
+    min-height: 100vh;
+    position: relative;
+    z-index: 5;
+}
+
+.notebook-paper {
+    background-color: #fdfaf6;
+    width: 100%;
+    max-width: 600px;
+    padding: 50px 40px 40px 80px;
+    position: relative;
+    border-radius: 5px;
+    box-shadow: 0 15px 35px rgba(0,0,0,0.4);
+    /* Las líneas azules de la libreta */
+    background-image: repeating-linear-gradient(
+        transparent, 
+        transparent 31px, 
+        #a6c2d9 31px, 
+        #a6c2d9 32px
+    );
+    line-height: 32px; 
+}
+
+/* La línea roja del margen de la libreta */
+.notebook-paper::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 50px;
+    bottom: 0;
+    width: 2px;
+    background-color: #ff8c8c;
+    z-index: 1;
+}
+
+.notebook-paper * {
+    position: relative;
+    z-index: 2;
+}
+
+.boton-volver:hover {
+    color: #ff4d6d !important;
+    border-bottom-color: #ff4d6d !important;
+}
+
+/* =========================================
+   ESTILOS MINIJUEGO WALUIGI INTERACTIVO
+========================================= */
+.escenario-waluigi {
+    position: relative; z-index: 10; height: 100vh; width: 100%;
+    display: flex; flex-direction: column; justify-content: center; align-items: center;
+    overflow: hidden; background: rgba(0,0,0,0.3); /* Oscurecemos un poco el fondo */
+}
+
+/* Thwomp, Waluigi y Botón (Igual que antes pero ajustados) */
+.titulo-juego { font-family: 'Playfair Display', serif; font-size: 2.8rem; color: #fff; text-shadow: 0 5px 15px rgba(0,0,0,0.8); margin-bottom: 20px; text-align: center; z-index: 10; }
+.thwomp { position: absolute; top: -500px; width: 150px; height: 150px; background-color: #555; border: 8px solid #333; border-radius: 10px; display: flex; justify-content: center; align-items: center; box-shadow: 0 20px 30px rgba(0,0,0,0.8); z-index: 20; transition: top 0.4s cubic-bezier(0.5, 0, 1, 1); }
+.thwomp-cara { font-size: 3rem; font-weight: bold; color: #fff; text-shadow: 0 0 10px #000; }
+.waluigi-container { position: relative; margin-top: 20px; z-index: 15; text-align: center; transition: transform 0.1s ease-out, opacity 0.3s; }
+.waluigi-sprite { font-size: 100px; filter: drop-shadow(0 10px 15px rgba(0,0,0,0.5)); display: block; }
+.waluigi-dialogo { background: white; color: #6a0dad; font-weight: bold; font-family: 'Lato', sans-serif; padding: 10px 20px; border-radius: 20px; position: absolute; top: -30px; right: -70px; box-shadow: 0 5px 15px rgba(0,0,0,0.3); animation: flotarWaluigi 2s infinite; }
+.boton-peligro { margin-top: 50px; background: linear-gradient(145deg, #ff4d4d, #cc0000); color: white; font-family: 'Lato', sans-serif; font-size: 2rem; font-weight: bold; padding: 20px 50px; border: none; border-radius: 50px; box-shadow: 0 15px 0 #880000, 0 20px 20px rgba(0,0,0,0.5); cursor: pointer; transition: 0.1s; text-transform: uppercase; z-index: 20; }
+.boton-peligro:active { transform: translateY(10px); box-shadow: 0 5px 0 #880000, 0 10px 10px rgba(0,0,0,0.5); }
+
+/* =========================================
+   NUEVO PREMIO INTERACTIVO (Glassmorphism)
+========================================= */
+.contenedor-premio-interactivo {
+    position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%) scale(0);
+    width: 90%; max-width: 500px;
+    background: rgba(255, 255, 255, 0.1); backdrop-filter: blur(20px); -webkit-backdrop-filter: blur(20px);
+    border: 1px solid rgba(255, 255, 255, 0.2); border-radius: 30px;
+    padding: 50px 30px; text-align: center; box-shadow: 0 20px 60px rgba(0,0,0,0.6);
+    opacity: 0; z-index: 30; color: #fff;
+    transition: all 0.8s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+}
+
+.mostrar-premio { transform: translate(-50%, -50%) scale(1) !important; opacity: 1 !important; }
+
+.texto-victoria { font-family: 'Playfair Display', serif; font-size: 2.5rem; color: #ffb6c1; text-shadow: 0 0 15px #ff4d6d; margin-bottom: 10px; }
+.subtexto-victoria { font-size: 1.1rem; color: #ddd; margin-bottom: 40px; font-style: italic; }
+
+/* EL COFRE GIRATORIO 3D */
+.cofre-estrella {
+    position: relative; width: 100px; height: 100px; margin: 0 auto 40px;
+    cursor: pointer; transform-style: preserve-3d;
+    animation: girarCofre 4s linear infinite;
+    transition: transform 0.3s ease;
+}
+.cofre-estrella:hover { transform: scale(1.1) rotateX(-10deg); }
+
+.cofre-estrella .caja {
+    position: absolute; width: 100%; height: 100%;
+    background: linear-gradient(135deg, #ffd700, #ff8c00); /* Oro Mario Party */
+    border: 4px solid #b8860b; border-radius: 10px;
+    display: flex; justify-content: center; align-items: center;
+    font-size: 4rem; color: #fff; text-shadow: 0 0 15px #fff;
+    box-shadow: 0 10px 20px rgba(0,0,0,0.5);
+}
+
+@keyframes girarCofre { 0% { transform: rotateY(0deg); } 100% { transform: rotateY(360deg); } }
+
+/* Botón Final del Regalo */
+.boton-final-regalo {
+    display: inline-block; padding: 15px 40px; background: #30D5C8; color: #000;
+    font-family: 'Lato', sans-serif; font-size: 1.3rem; font-weight: bold;
+    text-decoration: none; border-radius: 30px;
+    box-shadow: 0 5px 15px rgba(48, 213, 200, 0.4);
+    opacity: 0; transform: translateY(20px); pointer-events: none;
+    transition: all 0.5s ease;
+}
+.mostrar-boton-final { opacity: 1 !important; transform: translateY(0) !important; pointer-events: auto !important; }
+.boton-final-regalo:hover { background: #fff; box-shadow: 0 8px 25px rgba(255, 255, 255, 0.6); }
+
+/* =========================================
+   SISTEMA DE CONFETI Y ANIMACIONES
+========================================= */
+.confetti-container { position: absolute; top: 0; left: 0; width: 100%; height: 100%; pointer-events: none; z-index: 100; }
+
+.confetto {
+    position: absolute; width: 12px; height: 12px;
+    animation: caerConfeti 3s ease-out infinite;
+}
+
+@keyframes caerConfeti {
+    0% { transform: translateY(-100vh) rotate(0deg); opacity: 1; }
+    100% { transform: translateY(100vh) rotate(720deg); opacity: 0; }
+}
+
+/* Animaciones de impacto */
+@keyframes flotarWaluigi { 0%, 100% { transform: translateY(0); } 50% { transform: translateY(-10px); } }
+.temblor-pantalla { animation: terremoto 0.3s linear; }
+@keyframes terremoto { 0%, 100% { transform: translate(0, 0); } 20%, 60% { transform: translate(-10px, -10px); } 40%, 80% { transform: translate(10px, 10px); } }
+
+/* Clases de JS */
+.thwomp-caer { top: calc(50% - 75px) !important; }
+.waluigi-aplastado { transform: scaleY(0.1) translateY(400px); opacity: 0; }
+.ocultar-boton { display: none !important; }
+.ocultar-cofre { animation: estallarCofre 0.5s ease-out forwards !important; pointer-events: none; }
+
+@keyframes estallarCofre { 0% { transform: scale(1); opacity: 1; } 50% { transform: scale(1.5); opacity: 0.5; filter: brightness(2); } 100% { transform: scale(0); opacity: 0; } }
+
+/* =========================================
+   CARTA FINAL: ESTILO PRINCESA PEACH (GAMER)
+========================================= */
+
+/* Fondo rosa pastel con patrón de lunares blancos */
+/* Fondo rosa pastel con patrón de lunares blancos */
+.fondo-peach {
+    background-color: #FFB6C1; 
+    background-image: radial-gradient(#fff 15%, transparent 16%), radial-gradient(#fff 15%, transparent 16%);
+    background-size: 60px 60px;
+    background-position: 0 0, 30px 30px;
+    
+    min-height: 100vh; /* CAMBIO 1: Ahora se estira si es necesario */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-family: 'Press Start 2P', cursive;
+    margin: 0;
+    
+    overflow-y: auto; /* CAMBIO 2: Permite hacer scroll hacia abajo */
+    padding: 40px 20px; /* CAMBIO 3: Le da un poco de respiro arriba y abajo */
+    box-sizing: border-box;
+}
+
+.contenedor-victoria {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 90%;
+    max-width: 800px;
+    z-index: 10;
+}
+
+/* Letrero de Nivel Completado (Tonos fucsia y blanco) */
+.texto-level-clear {
+    color: #FFF;
+    text-shadow: 4px 4px 0px #FF1493; /* Sombra fucsia brillante */
+    font-size: 2.5rem;
+    margin-bottom: 50px;
+    text-align: center;
+    animation: parpadeoPeach 1.2s infinite;
+}
+
+@keyframes parpadeoPeach {
+    0%, 100% { opacity: 1; transform: scale(1) translateY(0); }
+    50% { opacity: 0.8; transform: scale(1.05) translateY(-5px); }
+}
+
+/* Caja de diálogo rosa fuerte con borde blanco */
+.caja-dialogo-peach {
+    background-color: #FF69B4; /* Hot Pink retro */
+    border: 6px solid #FFF;
+    border-radius: 15px;
+    padding: 35px 40px;
+    position: relative;
+    box-shadow: 10px 10px 0px rgba(0,0,0,0.3);
+    width: 100%;
+    min-height: 280px;
+}
+
+/* La corona flotando en la esquina */
+.icono-corona {
+    position: absolute;
+    top: -30px;
+    left: -25px;
+    font-size: 3.5rem;
+    animation: flotarCorona 2s ease-in-out infinite;
+    filter: drop-shadow(4px 4px 0px rgba(0,0,0,0.3));
+}
+
+@keyframes flotarCorona {
+    0%, 100% { transform: translateY(0) rotate(-10deg); }
+    50% { transform: translateY(-10px) rotate(10deg); }
+}
+
+/* El texto de la carta */
+#texto-carta-peach {
+    color: #FFF;
+    font-family: 'Lato', sans-serif;
+    font-size: 1.4rem; /* Un poco más grande para que se lea perfecto */
+    line-height: 1.8;
+    font-weight: 700;
+    text-shadow: 1px 1px 3px rgba(0,0,0,0.2);
+}
+
+/* Flechita parpadeante al final del texto */
+.flecha-continuar {
+    display: none;
+    color: #FFF;
+    position: absolute;
+    bottom: 15px;
+    right: 20px;
+    font-size: 1.5rem;
+    animation: saltarFlecha 0.5s infinite alternate;
+}
+
+@keyframes saltarFlecha {
+    from { transform: translateY(0); }
+    to { transform: translateY(10px); }
+}
+
+/* Botón retro Peach */
+.btn-peach {
+    margin-top: 40px;
+    background-color: #FF1493; /* Deep Pink */
+    color: #fff;
+    border: 4px solid #FFF;
+    border-radius: 30px;
+    padding: 15px 35px;
+    font-size: 1.2rem;
+    text-decoration: none;
+    box-shadow: 0px 8px 0px #C71585; /* Sombra 3D */
+    transition: 0.1s;
+    opacity: 0;
+    pointer-events: none;
+}
+
+.btn-peach.mostrar-boton {
+    opacity: 1;
+    pointer-events: auto;
+}
+
+.btn-peach:active {
+    transform: translateY(8px);
+    box-shadow: 0px 0px 0px #C71585;
+}
+
+/* Hacer a Waluigi más pequeño */
+.waluigi-sprite img {
+    width: 70px !important; /* El !important fuerza a la imagen a obedecer este tamaño */
+    max-width: 100%;
+    height: auto;
+    display: block;
+    margin: 0 auto;
+    filter: drop-shadow(0 10px 15px rgba(0,0,0,0.5));
+}
+
+/* =========================================
+   ESTILOS DE LA ASISTENTE PEACH
+========================================= */
+#asistente-peach {
+    position: fixed;
+    bottom: 20px;
+    right: 20px;
+    z-index: 99999;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-end;
+    pointer-events: none; /* Deja hacer clic a lo que esté detrás si no es Peach */
+}
+
+/* El Avatar */
+#peach-avatar {
+    width: 90px;
+    height: auto;
+    cursor: pointer;
+    pointer-events: auto;
+    animation: flotarPeach 3s ease-in-out infinite;
+    filter: drop-shadow(0 10px 15px rgba(0,0,0,0.4));
+    transition: transform 0.2s;
+}
+
+#peach-avatar img {
+    width: 100%;
+    height: auto;
+    display: block;
+}
+
+#peach-avatar:active {
+    transform: scale(0.9); /* Efecto al darle clic */
+}
+
+@keyframes flotarPeach {
+    0%, 100% { transform: translateY(0); }
+    50% { transform: translateY(-10px); }
+}
+
+/* Burbuja de Diálogo */
+#peach-dialogo {
+    background: #FF69B4; /* Hot Pink Peach */
+    color: white;
+    font-family: 'Lato', sans-serif;
+    font-size: 1rem;
+    font-weight: bold;
+    padding: 15px 20px;
+    border: 3px solid #FFF;
+    border-radius: 20px 20px 0 20px;
+    box-shadow: 0 10px 20px rgba(0,0,0,0.3);
+    margin-bottom: 15px;
+    max-width: 250px;
+    pointer-events: auto;
+    position: relative;
+    transform-origin: bottom right;
+    transition: all 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+}
+
+/* El piquito de la burbuja que apunta a Peach */
+#peach-dialogo::after {
+    content: '';
+    position: absolute;
+    bottom: -10px;
+    right: 30px;
+    border-width: 10px 10px 0;
+    border-style: solid;
+    border-color: #FF69B4 transparent transparent transparent;
+}
+
+#peach-dialogo.oculto {
+    opacity: 0;
+    transform: scale(0);
+    pointer-events: none;
+}
+
+/* Botón para cerrar el chat */
+#peach-cerrar {
+    position: absolute;
+    top: -10px;
+    right: -10px;
+    background: #FFF;
+    color: #FF69B4;
+    width: 22px;
+    height: 22px;
+    border-radius: 50%;
+    text-align: center;
+    line-height: 22px;
+    font-size: 0.8rem;
+    cursor: pointer;
+    box-shadow: 0 2px 5px rgba(0,0,0,0.2);
+}
+
+/* =========================================
+   ESTILOS DEL CHATBOT DE PEACH
+========================================= */
+#asistente-peach {
+    position: fixed;
+    bottom: 20px;
+    right: 20px;
+    z-index: 99999;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-end;
+    pointer-events: none; /* Deja hacer clic al fondo */
+}
+
+#peach-avatar {
+    width: 90px;
+    cursor: pointer;
+    pointer-events: auto;
+    animation: flotarPeach 3s ease-in-out infinite;
+    filter: drop-shadow(0 10px 15px rgba(0,0,0,0.4));
+    transition: transform 0.2s;
+    margin-top: 15px;
+}
+
+#peach-avatar img { width: 100%; display: block; }
+#peach-avatar:active { transform: scale(0.9); }
+
+@keyframes flotarPeach { 0%, 100% { transform: translateY(0); } 50% { transform: translateY(-10px); } }
+
+/* La Ventana del Chat */
+#peach-chat {
+    width: 300px;
+    height: 380px;
+    background: #fff;
+    border-radius: 20px;
+    box-shadow: 0 15px 30px rgba(0,0,0,0.3);
+    display: flex;
+    flex-direction: column;
+    overflow: hidden;
+    pointer-events: auto;
+    transform-origin: bottom right;
+    transition: all 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+}
+
+#peach-chat.oculto {
+    opacity: 0;
+    transform: scale(0);
+    pointer-events: none;
+}
+
+/* Cabecera del Chat */
+.chat-header {
+    background: #FF69B4;
+    color: white;
+    padding: 15px;
+    font-family: 'Playfair Display', serif;
+    font-weight: bold;
+    font-size: 1.1rem;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+#peach-cerrar { cursor: pointer; background: rgba(255,255,255,0.3); padding: 2px 8px; border-radius: 50%; }
+
+/* Área de los mensajes */
+#chat-historial {
+    flex: 1;
+    padding: 15px;
+    overflow-y: auto;
+    background: #FFF0F5; /* Rosa muy clarito */
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+.mensaje {
+    max-width: 80%;
+    padding: 10px 15px;
+    border-radius: 15px;
+    font-family: 'Lato', sans-serif;
+    font-size: 0.9rem;
+    line-height: 1.4;
+    word-wrap: break-word;
+}
+
+.mensaje.peach {
+    background: #FFB6C1;
+    color: #000;
+    align-self: flex-start;
+    border-bottom-left-radius: 0;
+}
+
+.mensaje.dani {
+    background: #30D5C8; /* Turquesa chido */
+    color: #fff;
+    align-self: flex-end;
+    border-bottom-right-radius: 0;
+}
+
+/* El efecto de "Escribiendo..." */
+.mensaje[class*="peach-pensando"] {
+    background: #f0f0f0;
+    color: #888;
+    font-style: italic;
+}
+
+/* Barra para escribir */
+.chat-input-area {
+    display: flex;
+    padding: 10px;
+    background: white;
+    border-top: 1px solid #eee;
+}
+
+#chat-input {
+    flex: 1;
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 20px;
+    outline: none;
+    font-family: 'Lato', sans-serif;
+}
+
+#btn-enviar {
+    background: #FF69B4;
+    color: white;
+    border: none;
+    border-radius: 50%;
+    width: 38px; height: 38px;
+    margin-left: 10px;
+    cursor: pointer;
+    font-size: 1.2rem;
+    display: flex; justify-content: center; align-items: center;
+}
+
+/* =========================================
+   HECHIZOS MÁGICOS DE PEACH ✨
+========================================= */
+
+/* 1. Gravedad Cero */
+body.gravedad-cero * {
+    animation: flotarGravedad 4s ease-in-out infinite alternate !important;
+}
+@keyframes flotarGravedad {
+    0% { transform: translateY(0px) rotate(0deg); }
+    100% { transform: translateY(-15px) rotate(1deg); }
+}
+
+/* 2. Modo Noche (Apaga la luz) */
+body.modo-noche-neon {
+    background: #050505 !important;
+    color: #fff !important;
+    transition: all 1s ease;
+}
+body.modo-noche-neon * {
+    text-shadow: 0 0 10px rgba(255, 105, 180, 0.8) !important;
+    border-color: rgba(255, 105, 180, 0.5) !important;
+}
+
+/* 3. Lluvia de Amor (Corazones cayendo) */
+.corazon-magico {
+    position: fixed;
+    top: -50px;
+    font-size: 24px;
+    z-index: 999999;
+    animation: caerCorazon 3s linear forwards;
+    pointer-events: none;
+}
+@keyframes caerCorazon {
+    0% { transform: translateY(0) rotate(0deg); opacity: 1; }
+    100% { transform: translateY(100vh) rotate(360deg); opacity: 0; }
+}
+
+/* 4. Explosión de Waluigi */
+.explosion-efecto {
+    animation: kaboom 0.5s ease-out forwards !important;
+    pointer-events: none !important;
+}
+@keyframes kaboom {
+    0% { transform: scale(1); filter: brightness(1) drop-shadow(0 0 0 red); }
+    50% { transform: scale(2) rotate(15deg); filter: brightness(2) drop-shadow(0 0 50px red); opacity: 1; }
+    100% { transform: scale(0); opacity: 0; display: none; }
+}
+
+/* =========================================
+   🐼 ESTILOS DEL PANDA MENSAJERO
+   ========================================= */
+   .panda-interactivo {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin-top: 20px;
+}
+
+#imagen-panda:hover {
+    transform: scale(1.05); /* Se hace un poquito más grande al pasar el mouse */
+}
+
+/* El globo de cómic */
+#globo-texto {
+    background: #ffffff;
+    color: #333;
+    padding: 20px 25px;
+    border-radius: 20px;
+    font-size: 1.2rem;
+    font-weight: bold;
+    max-width: 400px;
+    position: relative;
+    margin-bottom: 25px;
+    box-shadow: 0 5px 15px rgba(0,0,0,0.3);
+    opacity: 1;
+    transition: opacity 0.4s ease;
+    font-family: 'Comic Sans MS', cursive, sans-serif;
+}
+
+/* El piquito del globo apuntando hacia abajo */
+#globo-texto::after {
+    content: '';
+    position: absolute;
+    bottom: -15px; /* Ajusta la posición del piquito */
+    left: 50%;
+    transform: translateX(-50%);
+    border-width: 15px 15px 0;
+    border-style: solid;
+    border-color: #ffffff transparent transparent transparent;
+    display: block;
+    width: 0;
+}
+
+/* Animación cuando el panda salta al despertar */
+.panda-salto {
+    animation: saltito 0.5s ease;
+}
+
+@keyframes saltito {
+    0% { transform: translateY(0); }
+    50% { transform: translateY(-30px); }
+    100% { transform: translateY(0); }
+}
+
+/* Ocultar el globo suavemente */
+.oculto {
+    opacity: 0;
+    pointer-events: none;
+}
+
+/* =========================================
+   PANTALLA DE BLOQUEO (ESTILO MACBOOK)
+   ========================================= */
+
+   #video-fondo {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    object-fit: cover;
+    z-index: -1;
+}
+
+#lock-screen {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    /* Fondo más oscuro para que no lastime la vista y resalte la letra */
+    background: rgba(0, 0, 0, 0.65); 
+    backdrop-filter: blur(15px);
+    -webkit-backdrop-filter: blur(15px);
+    
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center; /* Centrado para estilo Mac */
+    z-index: 9999;
+    color: white;
+    font-family: 'Poppins', sans-serif;
+    
+    /* Animación optimizada y fluida */
+    transition: opacity 0.6s ease, transform 0.6s ease;
+    will-change: opacity, transform; /* Evita que se trabe */
+}
+
+/* Reloj Mac */
+.mac-datetime {
+    text-align: center;
+    margin-top: -5vh;
+    text-shadow: 0 4px 15px rgba(0,0,0,0.6);
+}
+
+.mac-fecha {
+    font-size: 1.5rem;
+    font-weight: 600;
+    margin: 0;
+    letter-spacing: 2px;
+    text-transform: capitalize;
+    color: rgba(255, 255, 255, 0.9);
+}
+
+.mac-hora {
+    font-size: 8rem;
+    font-weight: 600;
+    margin: -10px 0 10px 0;
+    line-height: 1;
+}
+
+/* Widget translúcido elegante */
+.mac-widget {
+    background: rgba(255, 255, 255, 0.1); 
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    border-radius: 16px;
+    padding: 10px 25px;
+    text-align: center;
+    margin-bottom: 6vh;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.3);
+}
+
+.mac-widget p {
+    margin: 0;
+    font-size: 0.85rem;
+    font-weight: 300;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    color: rgba(255,255,255,0.7);
+}
+
+.contador {
+    font-size: 1.5rem;
+    font-weight: 600;
+    margin-top: 5px;
+}
+
+/* Flotación muy sutil */
+.floating {
+    animation: float 4s ease-in-out infinite;
+}
+@keyframes float {
+    0%, 100% { transform: translateY(0px); }
+    50% { transform: translateY(-6px); }
+}
+
+/* Área de Usuario (Avatar y Login) */
+.mac-login {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.mac-avatar {
+    width: 80px;
+    height: 80px;
+    border-radius: 50%;
+    background: linear-gradient(135deg, #ff9a9e 0%, #fecfef 100%); /* Color aesthetic */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 2.5rem;
+    font-weight: 600;
+    color: white;
+    box-shadow: 0 4px 15px rgba(0,0,0,0.5);
+    margin-bottom: 15px;
+}
+
+.mac-username {
+    font-size: 1.5rem;
+    font-weight: 500;
+    margin: 0 0 20px 0;
+    text-shadow: 0 2px 5px rgba(0,0,0,0.5);
+}
+
+/* Botón de desbloqueo (Simula la barra de contraseña de Mac) */
+.mac-password-box {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    background: rgba(255, 255, 255, 0.15);
+    border: 1px solid rgba(255, 255, 255, 0.3);
+    border-radius: 20px;
+    padding: 5px 5px 5px 20px;
+    width: 220px;
+    cursor: pointer;
+    transition: all 0.2s ease;
+}
+
+.mac-password-box:hover {
+    background: rgba(255, 255, 255, 0.25);
+    width: 230px;
+}
+
+.mac-password-box span {
+    font-size: 0.9rem;
+    font-weight: 300;
+    color: rgba(255,255,255,0.8);
+}
+
+.mac-enter-btn {
+    width: 30px;
+    height: 30px;
+    border-radius: 50%;
+    background: rgba(255, 255, 255, 0.9);
+    color: black;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 1rem;
+}
+
+/* Ocultar el contenido principal */
+.oculto-inicio {
+    opacity: 0;
+    pointer-events: none;
+    transition: opacity 1.5s ease-in-out;
+}
+.mostrar-contenido {
+    opacity: 1 !important;
+    pointer-events: auto !important;
+}
+
+/* =========================================
+   🎵 ESTILOS DEL TOCADISCOS Y SALA DE ESCUCHA
+   ========================================= */
+
+   .escritorio-musical {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    align-items: center;
+    gap: 40px;
+    margin-top: 20px;
+}
+
+/* LA COLECCIÓN DE DISCOS */
+.coleccion-discos {
+    display: flex;
+    gap: 15px;
+}
+
+.disco-item {
+    width: 100px;
+    height: 100px;
+    border-radius: 5px;
+    box-shadow: 0 5px 15px rgba(0,0,0,0.4);
+    cursor: pointer;
+    transition: transform 0.3s ease, margin-top 0.3s ease;
+}
+
+.disco-item:hover {
+    transform: scale(1.1);
+    margin-top: -15px; /* Efecto de que sale de la caja */
+}
+
+.disco-item img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    border-radius: 5px;
+}
+
+.tocadiscos-base {
+    width: 300px;
+    height: 300px;
+    /* Degradado rojo oscuro a rojo vibrante */
+    background: linear-gradient(145deg, #800020, #e63946); 
+    border: 2px solid #ffb3c1; /* Borde rosita para resaltar */
+    border-radius: 20px;
+    position: relative;
+    box-shadow: inset 0 0 15px rgba(0,0,0,0.3), 0 15px 35px rgba(0,0,0,0.6);
+}
+
+.plato-giratorio {
+    width: 260px;
+    height: 260px;
+    background: #1a1a1a;
+    border-radius: 50%;
+    position: absolute;
+    top: 20px;
+    left: 20px;
+    box-shadow: inset 0 0 10px #000;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+/* El Vinilo */
+.vinilo {
+    width: 250px;
+    height: 250px;
+    background: repeating-radial-gradient(
+        #222,
+        #222 4px,
+        #111 5px,
+        #111 6px
+    ); /* Rayitas del disco de vinilo */
+    border-radius: 50%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    opacity: 0; /* Oculto al inicio */
+    transition: opacity 0.5s ease;
+}
+
+.centro-vinilo {
+    width: 80px;
+    height: 80px;
+    background: #fff;
+    border-radius: 50%;
+    overflow: hidden;
+    position: relative;
+    pointer-events: none; /* ¡Esta es la línea mágica para evitar bugs de arrastre! */
+}
+
+.centro-vinilo img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+/* El agujerito del medio del disco */
+.centro-vinilo::after {
+    content: '';
+    width: 10px;
+    height: 10px;
+    background: #1a1a1a;
+    border-radius: 50%;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+}
+
+/* Animación de girar */
+.girando {
+    animation: rotar-vinilo 4s linear infinite;
+}
+
+@keyframes rotar-vinilo {
+    100% { transform: rotate(360deg); }
+}
+
+/* La Aguja del tocadiscos */
+.aguja {
+    width: 10px;
+    height: 120px;
+    background: linear-gradient(to bottom, #d3d3d3, #888);
+    position: absolute;
+    top: 30px;
+    right: 30px;
+    transform-origin: top center;
+    transform: rotate(0deg);
+    border-radius: 10px;
+    cursor: pointer;
+    transition: transform 0.5s ease;
+    box-shadow: 2px 5px 10px rgba(0,0,0,0.4);
+}
+
+/* La cabecita de la aguja */
+.aguja::after {
+    content: '';
+    width: 15px;
+    height: 25px;
+    background: #444;
+    position: absolute;
+    bottom: -5px;
+    left: -2.5px;
+    border-radius: 3px;
+}
+
+/* Posición de la aguja cuando está sonando el disco */
+.aguja-activa {
+    transform: rotate(35deg);
+}
+
+/* EFECTOS VISUALES DEL ENTORNO */
+/* Transición de color en el fondo de la página */
+#video-fondo {
+    transition: filter 2s ease;
+}
+
+/* Las notas musicales que flotan */
+.nota-musical {
+    position: fixed;
+    bottom: -50px;
+    font-size: 24px;
+    color: rgba(255, 255, 255, 0.7);
+    animation: flotar-nota 4s ease-in forwards;
+    pointer-events: none;
+    z-index: 10;
+}
+
+@keyframes flotar-nota {
+    0% { transform: translateY(0) rotate(0deg); opacity: 1; }
+    100% { transform: translateY(-100vh) rotate(360deg); opacity: 0; }
+}
+
+/* ZONA DROP Y FÍSICAS */
+.disco-item {
+    cursor: grab;
+    user-select: none; /* Evita que el navegador crea que quiere copiar la imagen */
+    -webkit-user-drag: element; 
+}
+.disco-item:active {
+    cursor: grabbing;
+    opacity: 0.6; /* Se hace transparente al agarrarlo */
+}
+.plato-giratorio.resaltado {
+    box-shadow: inset 0 0 30px rgba(255, 255, 255, 0.5); /* Brilla cuando arrastras encima */
+    background: #2a2a2a;
+}
+.aguja {
+    cursor: grab; /* Indica que se puede agarrar */
+}
+.aguja:active {
+    cursor: grabbing;
+}
+
+/* PANEL DE CONTROLES VINTAGE */
+.equipo-sonido {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 20px;
+}
+.panel-controles {
+    background: rgba(0, 0, 0, 0.5);
+    padding: 15px 30px;
+    border-radius: 15px;
+    display: flex;
+    gap: 30px;
+    border: 1px solid rgba(255,255,255,0.2);
+}
+.control-slider {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    color: #fff;
+    font-size: 0.9rem;
+    font-weight: bold;
+    gap: 5px;
+}
+.control-slider input[type="range"] {
+    accent-color: #ff4d6d; /* Color rosita para el control */
+    cursor: pointer;
+}
+
+/* OPTIMIZACIÓN DE RENDIMIENTO PARA LAS NOTAS */
+.nota-musical {
+    position: fixed;
+    bottom: -50px;
+    font-size: 24px;
+    color: rgba(255, 255, 255, 0.7);
+    animation: flotar-nota 4s linear forwards;
+    pointer-events: none;
+    z-index: 10;
+    will-change: transform, opacity; /* Truco anti-lag */
+}
+
+/* ==========================================
+   🎤 MODO SPOTIFY KARAOKE (Scroll)
+   ========================================== */
+   .contenedor-spotify {
+    width: 100%;
+    max-width: 600px;
+    height: 350px; /* Altura del panel de letras */
+    margin-top: 30px;
+    position: relative;
+    overflow: hidden; /* Esconde lo que sale de la caja */
+    /* Efecto difuminado en los bordes superior e inferior */
+    mask-image: linear-gradient(transparent 5%, black 30%, black 70%, transparent 95%);
+    -webkit-mask-image: linear-gradient(transparent 5%, black 30%, black 70%, transparent 95%);
+}
+
+.letras-scroll {
+    display: flex;
+    flex-direction: column;
+    gap: 25px; /* Espacio entre cada línea */
+    padding: 150px 20px; /* Padding para que la línea activa quede justo en el centro */
+    transition: transform 0.4s ease-out; /* El deslizamiento suave de Spotify */
+}
+
+.linea-letra {
+    font-size: 1.4rem;
+    font-weight: bold;
+    color: rgba(255, 255, 255, 0.3); /* Letra apagada (gris) */
+    transition: all 0.3s ease;
+    cursor: pointer;
+    margin: 0;
+    text-align: center;
+}
+
+/* La línea que está sonando en ese segundo */
+.linea-letra.activa {
+    color: #fff; /* Blanco brillante */
+    font-size: 1.8rem; /* Se hace más grande */
+    text-shadow: 0 0 15px rgba(255, 255, 255, 0.4);
+}
+
+.linea-letra:hover {
+    color: rgba(255, 255, 255, 0.8); /* Brilla un poco si pasa el mouse */
+}
+
+/* =========================================
+   TAPA DE ACRÍLICO 3D
+   ========================================= */
+   .tapa-tocadiscos {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(255, 255, 255, 0.15); /* Efecto cristal transparente */
+    backdrop-filter: blur(3px); /* Hace que el disco adentro se vea un poco borroso */
+    border: 2px solid rgba(255, 255, 255, 0.4);
+    border-radius: 20px;
+    z-index: 10; /* Se pone por encima de la aguja y el disco */
+    
+    /* La magia del 3D */
+    transform-origin: top; /* Las bisagras están arriba */
+    transition: transform 0.8s cubic-bezier(0.34, 1.56, 0.64, 1); /* Movimiento con rebote realista */
+    
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    cursor: pointer;
+    box-shadow: inset 0 5px 20px rgba(255,255,255,0.6), 0 10px 30px rgba(0,0,0,0.5);
+}
+
+/* La clase que se activa cuando le damos clic */
+.tapa-tocadiscos.abierta {
+    transform: rotateX(105deg); /* Se abre hacia atrás */
+    backdrop-filter: blur(0px);
+    box-shadow: none;
+    /* ¡Listo! Sin el pointer-events, ahora sí la puedes volver a tocar */
+}
+
+#texto-tapa {
+    color: #fff;
+    font-size: 1.2rem;
+    font-weight: bold;
+    text-shadow: 0 2px 5px rgba(0,0,0,0.8);
+    transition: opacity 0.3s;
+}
+
+/* Oculta el texto de "Levantar Tapa" cuando está abierta */
+.tapa-tocadiscos.abierta #texto-tapa {
+    opacity: 0;
+}
